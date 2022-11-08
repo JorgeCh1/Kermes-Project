@@ -9,6 +9,7 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
 
+
     <!-- Favicons -->
     <link href="assets/img/kermesse_favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -282,25 +283,61 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Blank Page</h1>
+            <h1>Agregar Usuario</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Seguridad</li>
-                    <li class="breadcrumb-item active">Usuarios</li>
+                    <li class="breadcrumb-item"><a href="#">Usuarios</a></li>
+                    <li class="breadcrumb-item">Agregar Usuario</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Example Card</h5>
-                            <p>This is an examle page with no contrnt. You can use it as a starter for your custom
-                                pages.</p>
+                            <h5 class="card-title">Ingrese los datos del usuario</h5>
+                            <form action="">
+                                <div class="row mb-4">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Nombres</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Apellidos</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Usuario</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label class="col-sm-2 col-form-label">Contraseña</label>
+                                    <div class="col-sm-10">
+                                        <input type="password" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary rounded-pill">Guardar
+                                            Datos</button>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
 

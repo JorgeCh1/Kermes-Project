@@ -5,6 +5,8 @@ class tbl_usuario{
     private $nombres;
     private $apellidos;
     private $email;
+    private $user;
+    private $pwd;
     private $estado;
 
     public function getIdUsuario(){
@@ -36,6 +38,22 @@ class tbl_usuario{
 
     public function setEmail($email){
         $this->email = $email;
+    }
+
+    public function getUser(){
+        return $this->user;
+    }
+
+    public function setUser($user){
+        $this->user = $user;
+    }
+
+    public function getPwd(){
+        return $this->pwd;
+    }
+
+    public function setPwd($pwd){
+        $this->pwd = $pwd;
     }
 
     public function getEstado(){
