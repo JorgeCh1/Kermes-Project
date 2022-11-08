@@ -5,11 +5,10 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title></title>
+    <title>Kermes Project</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
-    <base href="vistas/">
 
     <!-- Favicons -->
     <link href="assets/img/kermesse_favicon.png" rel="icon">
@@ -284,23 +283,67 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Página Principal</h1>
+            <h1>Agregar Parroquia</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Parroquias</a></li>
+                    <li class="breadcrumb-item active">Agregar Parroquia</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Example Card</h5>
-                            <p>This is an examle page with no contrnt. You can use it as a starter for your custom
-                                pages.</p>
+                            <h5 class="card-title">Ingrese los datos de la parroquia</h5>
+                            <form action="">
+                                <div class="row mb-4">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Nombre</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Dirección</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Teléfono</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label for="inputText" class="col-sm-2 col-form-label">Parroco</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label class="col-sm-2 col-form-label">Sitio web</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <label class="col-sm-2 col-form-label">Logo</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary rounded-pill">Guardar
+                                            Datos</button>
+                                    </div>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
 

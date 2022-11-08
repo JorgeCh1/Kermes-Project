@@ -287,7 +287,7 @@
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Usuarios</a></li>
-                    <li class="breadcrumb-item">Agregar Usuario</li>
+                    <li class="breadcrumb-item active">Agregar Usuario</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
