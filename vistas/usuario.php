@@ -5,6 +5,13 @@ require_once '../controladores/usuarioController.php';
 
 $tu = new tbl_usuario();
 $dtu = new dt_tbl_usuario();
+
+if(isset($_GET['id_usuario']))
+{
+    $id_usuario = $_GET['id_usuario'];
+    $dtu->eliminarUsuario($id_usuario);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -222,12 +229,12 @@ $dtu = new dt_tbl_usuario();
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                         <img src="assets/img/profile_icon.png" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">Jorge Chávez</span>
+                        <span class="d-none d-md-block dropdown-toggle ps-2">Team Quickie</span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Jorge Chávez</h6>
+                            <h6>Team Quickie</h6>
                             <span>Web Designer</span>
                         </li>
                         <li>
@@ -235,7 +242,7 @@ $dtu = new dt_tbl_usuario();
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="perfil.php">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
@@ -245,7 +252,7 @@ $dtu = new dt_tbl_usuario();
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="perfil.php">
                                 <i class="bi bi-gear"></i>
                                 <span>Account Settings</span>
                             </a>
@@ -333,9 +340,12 @@ $dtu = new dt_tbl_usuario();
                                             <a href="editar_usuario.php?id_usuario=<?php echo $r->getIdUsuario(); ?>">
                                                 <i class="bi bi-pencil-square" title="Editar Usuario"></i>
                                             </a>
-                                            &nbsp;&nbsp;
-                                            <a href="#">
+                                            <a href="usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
                                                 <i class="bi bi-trash3" title="Eliminar Usuario"></i>
+                                            </a>
+                                            <a
+                                                href="agregar_rol_usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
+                                                <i class="bi bi-person-badge-fill" title="Agregar Rol a Usuario"></i>
                                             </a>
                                         </td>
                                     </tr>
@@ -373,6 +383,13 @@ $dtu = new dt_tbl_usuario();
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script>
+    let usuarioTable = document.querySelector('.usuariosTable');
+    let dataTable = new DataTable(".usuariosTable", {
+        searchable: true,
+        fixedHeight: true
+    });
+    </script>
 
 </body>
 

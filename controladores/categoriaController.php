@@ -8,7 +8,7 @@ class categoriaController
 
     public function __construct()
     {
-        $this->dt_categoria = new dt_tbl_categoria();
+        $this->dt_categoria = new Dt_tbl_categoria();
     }
     public static function guardarCategoria()
     {

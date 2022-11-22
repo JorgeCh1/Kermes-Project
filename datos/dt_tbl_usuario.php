@@ -106,5 +106,22 @@ class dt_tbl_usuario extends Conexion{
             die($e->getMessage());
         }
     }
+    public function eliminarUsuario($id_usuario)
+    {
+        try 
+        {
+            $sql = "DELETE FROM tbl_usuario WHERE id_usuario = ?";
+            $query = $this->conectar()->prepare($sql);
+            
+            $query->execute(array(
+                $id_usuario
+            ));
+            
+        } 
+        catch (Exception $e) 
+        {
+            die($e->getMessage());
+        }
+    }
 }
 ?>

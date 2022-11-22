@@ -1,39 +1,10 @@
-<?php
-require_once '../entidades/tbl_productos.php';
-require_once '../datos/dt_tbl_productos.php';
-require_once '../controladores/productoController.php';
-
-if(isset($_POST['m'])){
-    $metodo = $_POST['m'];
-    if(method_exists("productoController",$metodo))
-    {
-        productoController::{$metodo}();
-    }
-}
-
-require_once '../entidades/tbl_comunidad.php';
-require_once '../datos/dt_tbl_comunidad.php';
-require_once '../controladores/comunidadController.php';
-
-$ta = new tbl_comunidad();
-$dta = new dt_tbl_comunidad();
-$ca = new comunidadController();
-
-require_once '../entidades/tbl_categoria_producto.php';
-require_once '../datos/dt_tbl_categoria.php';
-require_once '../controladores/categoriaController.php';
-
-$tu = new tbl_categoria_producto();
-$dtu = new dt_tbl_categoria();
-$cu = new categoriaController();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <title>Kermes Project</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -172,6 +143,72 @@ $cu = new categoriaController();
 
                 </li><!-- End Notification Nav -->
 
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </a><!-- End Messages Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            You have 3 new messages
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Maria Hudson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>4 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Anna Nelson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>6 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>David Muldon</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>8 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                            <a href="#">Show all messages</a>
+                        </li>
+
+                    </ul><!-- End Messages Dropdown Items -->
+
+                </li><!-- End Messages Nav -->
+
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -242,7 +279,7 @@ $cu = new categoriaController();
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Agregar Producto</h1>
+            <h1>Productos</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -253,91 +290,13 @@ $cu = new categoriaController();
         </div><!-- End Page Title -->
 
         <section class="section">
-            <!-- Formulario para agregar Usuario-->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Agregar Datos del Producto</h5>
-
-                    <!-- Floating Labels Form -->
-                    <form class="row g-3" method="POST">
-                        <div class="col-md-12">
-                            <input type="hidden" value="guardar" name="txtaccion" />
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="floatingName" placeholder="Your Name"
-                                    name="nombre">
-                                <label for="floatingName">Nombre</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="form-floating">
-                                <textarea class="form-control" placeholder="Address" id="floatingTextarea"
-                                    style="height: 100px;" name="descripcion"></textarea>
-                                <label for="floatingTextarea">Descripción</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingCity" placeholder="City"
-                                        name="preciov_sugerido">
-                                    <label for="floatingCity">Precio</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingZip" placeholder="Zip"
-                                        name="cantidad">
-                                    <label for="floatingZip">Cantidad</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <select class="form-control" id="floatingZip" placeholder="Zip" name="id_categoria">
-                                        <option selected>Selecciona Una Categoria</option>
-                                        <?php
-                                    foreach ($dtu->listarCategoriaPrueba() as $r):
-                                    ?>
-                                        <option value="<? echo $r->getIdCategoriaProducto(); ?>">
-                                            <?php echo $r->getNombre(); ?>
-                                        </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <label for="floatingSelect">Categoria</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <select class="form-control" id="floatingZip" placeholder="Zip" name="id_comunidad">
-                                        <option selected>Selecciona Una Comunidad</option>
-                                        <?php
-                                    foreach ($dta->listarComunidadPrueba() as $r):
-                                    ?>
-                                        <option value="<? echo $r->getIdComunidad(); ?>">
-                                            <?php echo $r->getNombre(); ?>
-                                        </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <label for="floatingSelect">Comunidad</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-primary">Agregar Producto</button>
-                            <input type="hidden" name="m" value="guardarProducto">
-                            <button type="button" class="btn btn-outline-secondary">Cancelar</button>
-                        </div>
-                    </form>
-                    <!-- End floating Labels Form -->
-
+                    <h5 class="card-title">Productos Agregados</h5>
+                    <h5 class="card-title">En Proceso...</h5>
         </section>
-    </main>
-    <!-- End #main -->
+
+    </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <?php

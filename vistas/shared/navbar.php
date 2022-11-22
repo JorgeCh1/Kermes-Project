@@ -64,7 +64,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="agregar_producto.php">
+                    <a href="agregar_productos.php">
                         <i class="bi bi-circle"></i><span>Agregar Productos</span>
                     </a>
                 </li>
