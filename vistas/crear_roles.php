@@ -1,3 +1,18 @@
+<?php
+
+require_once '../entidades/tbl_rol.php';
+require_once '../datos/dt_tbl_rol.php';
+require_once '../controladores/rolController.php';
+
+if(isset($_POST['m'])){
+    $metodo = $_POST['m'];
+    if(method_exists("rolController",$metodo))
+    {
+        rolController::{$metodo}();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -279,21 +294,44 @@
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Productos</h1>
+            <h1>Agregar Roles</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item">Pages</li>
-                    <li class="breadcrumb-item active">Productos</li>
+                    <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
+                    <li class="breadcrumb-item">Roles</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
+            <!-- Formulario para agregar Usuario-->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Productos Agregados</h5>
-                    <h5 class="card-title">En Proceso...</h5>
+                    <h5 class="card-title">Agregar datos de los Roles</h5>
+
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3 needs-validation" novalidate method="POST">
+                        <div class="col-md-12">
+                            <input type="hidden" value="guardar" name="txtaccion" />
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="validationCustom01" id="floatingName"
+                                    placeholder="Your Name" name="nombre" required>
+                                <label for="floatingName" id="validationCustom01">Descripción del Rol</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-primary">Agregar Rol</button>
+                            <input type="hidden" name="m" value="guardarRol">
+                            <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+                        </div>
+                    </form><!-- End floating Labels Form -->
+
         </section>
 
     </main><!-- End #main -->

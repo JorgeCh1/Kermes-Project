@@ -4,7 +4,7 @@ require_once("../datos/dt_tbl_comunidad.php");
 
 class comunidadController
 {
-    private $dt_comunidada;
+    private $dt_comunidad;
 
     public function __construct()
     {
@@ -62,4 +62,23 @@ class comunidadController
             die($e->getMessage());
         }
     }
+
+    public static function eliminarComunidad()
+    {
+     try 
+     {
+         $id = $_REQUEST['id_comunidad'];
+         
+         $dtu = new dt_tbl_comunidad();
+ 
+         $dtu->editarComunidad($id);
+ 
+         header("Location: comunidad.php");
+     } 
+     catch (Exception $e) 
+     {
+         die($e->getMessage());
+     }
+    } 
+
 }

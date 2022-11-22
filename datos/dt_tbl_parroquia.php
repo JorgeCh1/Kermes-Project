@@ -1,14 +1,14 @@
 <?php
 
 require_once("conexion.php");
-require_once("../entidades/tbl_productos.php");
-class dt_tbl_productos extends Conexion{
+require_once("../entidades/tbl_parroquia.php");
+class dt_tbl_parroquia extends Conexion{
 
-    public function listarProductos()
+    public function listarParroquia()
     {    
         try
         {
-            $sql = "SELECT * FROM tbl_productos where estado<>3;";
+            $sql = "SELECT * FROM tbl_parroquia where estado<>3;";
             $result = array();
             $stm = $this->conectar()->prepare($sql);
             $stm->execute();

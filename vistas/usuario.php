@@ -343,8 +343,7 @@ if(isset($_GET['id_usuario']))
                                             <a href="usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
                                                 <i class="bi bi-trash3" title="Eliminar Usuario"></i>
                                             </a>
-                                            <a
-                                                href="agregar_rol_usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
+                                            <a href="rol_a_usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
                                                 <i class="bi bi-person-badge-fill" title="Agregar Rol a Usuario"></i>
                                             </a>
                                         </td>

@@ -5,6 +5,7 @@ require_once("../entidades/tbl_comunidad.php");
 class dt_tbl_comunidad extends Conexion
 {
 
+    
     public function listarComunidadPrueba()
     {    
         try
@@ -29,6 +30,7 @@ class dt_tbl_comunidad extends Conexion
             die($e->getMessage());
         }
     }
+    
     public function listarComunidad()
     {    
         try
@@ -124,5 +126,24 @@ class dt_tbl_comunidad extends Conexion
             die($e->getMessage());
         }
     }
+
+    public function eliminarComunidad($id_comunidad)
+    {
+        try 
+        {
+            $sql = "DELETE FROM `dbkermesse`.`tbl_comunidad` WHERE id_comunidad = ?;";
+            $query = $this->conectar()->prepare($sql);
+            
+            $query->execute(array(
+                $id_comunidad
+            ));
+            
+        } 
+        catch (Exception $e) 
+        {
+            die($e->getMessage());
+        }
+    }
+
 }
 ?>

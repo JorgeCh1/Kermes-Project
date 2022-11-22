@@ -24,6 +24,11 @@
                         <i class="bi bi-circle"></i><span>Agregar Usuarios</span>
                     </a>
                 </li>
+                <li>
+                    <a href="crear_roles.php">
+                        <i class="bi bi-circle"></i><span>Crear Roles</span>
+                    </a>
+                </li>
             </ul>
         </li><!-- End Components Nav -->
         <li class="nav-item">
@@ -59,8 +64,13 @@
             </a>
             <ul id="producto-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="producto.php">
+                    <a href="productos.php">
                         <i class="bi bi-circle"></i><span>Productos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="agregar_categoriaProd.php">
+                        <i class="bi bi-circle"></i><span>Categoría de Productos</span>
                     </a>
                 </li>
                 <li>
@@ -68,6 +78,7 @@
                         <i class="bi bi-circle"></i><span>Agregar Productos</span>
                     </a>
                 </li>
+
             </ul>
         </li>
 
