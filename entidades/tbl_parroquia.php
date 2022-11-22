@@ -29,7 +29,8 @@ class tbl_parroquia{
         return $this->direccion;
     }
 
-    public function setIdRolUsuario($direccion){
+
+    public function setDireccion($direccion){
         $this->direccion = $direccion;
     }
 

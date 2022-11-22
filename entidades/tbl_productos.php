@@ -1,6 +1,6 @@
 <?php
 
-class tbl_producto{
+class tbl_productos{
     private $id_producto;
     private $id_comunidad;
     private $id_cat_producto;
@@ -38,7 +38,7 @@ class tbl_producto{
         return $this->nombre;
     }
 
-    public function setNombres($nombre){
+    public function setNombre($nombre){
         $this->nombre = $nombre;
     }
 
@@ -70,7 +70,7 @@ class tbl_producto{
         return $this->estado;
     } 
 
-    public function setEstado(){
+    public function setEstado($estado){
         $this->estado = $estado;
     } 
 

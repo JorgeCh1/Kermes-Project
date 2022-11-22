@@ -3,12 +3,24 @@
 require_once '../entidades/tbl_usuario.php';
 require_once '../datos/dt_tbl_usuario.php';
 require_once '../controladores/usuarioController.php';
+
+$dtu = new dt_tbl_usuario();
+
+$varId_usuario = 0;
+if(isset($varId_usuario))
+{
+    $varId_usuario = $_GET['id_usuario'];
+}
+
+$data_usuario = $dtu->mostrarUsuario($varId_usuario);
+
 if(isset($_POST['m'])){
     $metodo = $_POST['m'];
     if(method_exists("usuarioController",$metodo))
     {
         usuarioController::{$metodo}();
     }
+   
 }
 ?>
 
@@ -224,13 +236,13 @@ if(isset($_POST['m'])){
             <li class="nav-item dropdown pe-3">
     
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="assets/img/logo2.png" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">System Color</span>
+                    <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
                 </a><!-- End Profile Iamge Icon -->
     
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>System Color</h6>
+                        <h6>Kevin Anderson</h6>
                         <span>Web Designer</span>
                     </li>
                     <li>
@@ -238,7 +250,7 @@ if(isset($_POST['m'])){
                     </li>
     
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="perfil.php">
+                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
@@ -291,99 +303,62 @@ if(isset($_POST['m'])){
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Agregar Usuario</h1>
+      <h1>Editar Usuario</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Agregar Usuario</li>
+          <li class="breadcrumb-item">Seguridad</li>
+          <li class="breadcrumb-item active">Editar Usuario</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
     <section class="section">
-        <!-- Formulario para agregar Usuario-->
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Agregar datos del Usuario</h5>
-    
-                <!-- Floating Labels Form -->
-                <form class="row g-3 needs-validation" novalidate method="POST">
-                    <div class="col-md-12">
-                        <input type="hidden" value="guardar" name="txtaccion" />
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="validationCustom01" id="floatingName" placeholder="Your Name"
-                                name="nombre" required>
-                            <label for="floatingName" id="validationCustom01">Nombre</label>
-                            <div class="valid-feedback">
-                        
-                            </div>
-                            <div class="invalid-feedback">
-                               Rellena este campo
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-floating">
-                                    <input type="text" class="form-control" id="validationCustom02" id="floatingName" placeholder="Your Name"
-                                        name="apellido" required>
-                                    <label for="floatingName" id="validationCustom02">Apellidos</label>
-                                    <div class="valid-feedback">
-                            
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Rellena este campo
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                        <div class="form-floating">
-                            <input type="email" class="form-control" id="validationCustom03" id="floatingName" placeholder="Your Name"
-                                name="email" required>
-                            <label for="floatingName" id="validationCustom03">Correo Electrónico</label>
-                            <div class="valid-feedback">
-                        
-                            </div>
-                            <div class="invalid-feedback">
-                                Rellena este campo y/o ingresa un correo electrónico válido
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom04" id="floatingEmail" placeholder="Your Email"
-                                    name="usuario" required>
-                                <label for="floatingEmail" id="validationCustom04">Usuario</label>
-                                <div class="valid-feedback">
-                        
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-6">
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="validationCustom05" id="floatingPassword" placeholder="Password"
-                                name="pwd" required>
-                            <label for="floatingPassword" id="validationCustom05">Contraseña</label>
-                            <div class="valid-feedback">
-                        
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                        </div>
+      <div class="row">
+        <div class="col-lg-12">
+            <form action="" method="POST">
+                <div class="row mb-3">
+                    <input type="hidden" value="<?php echo $data_usuario->getIdUsuario(); ?>" name="id_usuario" />
+                    <label class="col-sm-2 col-form-table">Nombre:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="nombre" value="<?php echo $data_usuario->getNombres();?>" />
                     </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-outline-primary">Agregar Usuario</button>
-                        <input type="hidden" name="m" value="guardarUsuario">
-                        <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-table">Apellido:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="apellido" class="form-control" value="<?php echo $data_usuario->getApellidos(); ?>" />
                     </div>
-                </form><!-- End floating Labels Form -->
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-table">Email:</label>
+                    <div class="col-sm-10">
+                        <input type="email" name="email" class="form-control" value="<?php echo $data_usuario->getEmail(); ?>" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-table">Usuario:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="usuario" class="form-control" value="<?php echo $data_usuario->getUsuario(); ?>" />
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-table">Contraseña:</label>
+                    <div class="col-sm-10">
+                        <input type="password" name="pwd" class="form-control" />
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-primary">Actualizar Usuario</button>
+                    <input type="hidden" name="m" value="editarUsuario">
+                    <button type="submit" href="usuario.php" class="btn btn-outline-secondary">Cancelar</button>
+                    <input type="hidden" value="enviar" onclick = "location='/vistas/usuario.php'"/>
+                </div>
+            </form>
+        </div>
+      </div>
     </section>
 
-    
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

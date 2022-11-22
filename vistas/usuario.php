@@ -1,3 +1,12 @@
+<?php
+require_once '../entidades/tbl_usuario.php';
+require_once '../datos/dt_tbl_usuario.php';
+require_once '../controladores/usuarioController.php';
+
+$tu = new tbl_usuario();
+$dtu = new dt_tbl_usuario();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +24,9 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -283,58 +294,72 @@
             <h1>Usuarios</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../index.php">Home</a></li>
-                    <li class="breadcrumb-item">Seguridad</li>
-                    <li class="breadcrumb-item active">Usuarios</li>
+                    <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
+                    <li class="breadcrumb-item">Usuarios</li>
+
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Example Card</h5>
-                            <p>This is an examle page with no contrnt. You can use it as a starter for your custom
-                                pages.</p>
+                            <h5 class="card-title">Usuarios</h5>
+                            <table class="table usuariosTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Email</th>
+                                        <th>Usuario</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+            foreach($dtu->listarUsuario() as $r):
+          ?>
+                                    <tr>
+                                        <td><?php echo $r->getIdUsuario(); ?></td>
+                                        <td><?php echo $r->getNombres(); ?></td>
+                                        <td><?php echo $r->getApellidos(); ?></td>
+                                        <td><?php echo $r->getEmail(); ?></td>
+                                        <td><?php echo $r->getUsuario(); ?></td>
+                                        <td>
+                                            <a href="editar_usuario.php?id_usuario=<?php echo $r->getIdUsuario(); ?>">
+                                                <i class="bi bi-pencil-square" title="Editar Usuario"></i>
+                                            </a>
+                                            &nbsp;&nbsp;
+                                            <a href="#">
+                                                <i class="bi bi-trash3" title="Eliminar Usuario"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="col-lg-6">
-
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Example Card</h5>
-                            <p>This is an examle page with no contrnt. You can use it as a starter for your custom
-                                pages.</p>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </section>
 
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer">
-        <div class="copyright">
-            &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-        </div>
-        <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-        </div>
-    </footer><!-- End Footer -->
+    <?php
+    include("shared/footer.php");
+  ?>
+    <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

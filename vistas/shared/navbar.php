@@ -28,9 +28,19 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#parroquia-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-shop"></i><span>Parroquias</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-people"></i><span>Comunidad</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="parroquia-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="comunidad.php">
+                        <i class="bi bi-circle"></i><span>Comunidad</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="agregar_comunidad.php">
+                        <i class="bi bi-circle"></i><span>Agregar Comunidad</span>
+                    </a>
+                </li>
                 <li>
                     <a href="parroquias.php">
                         <i class="bi bi-circle"></i><span>Parroquias</span>
@@ -39,6 +49,23 @@
                 <li>
                     <a href="agregar_parroquia.php">
                         <i class="bi bi-circle"></i><span>Agregar Parroquia</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#producto-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-basket3"></i><span>Productos</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="producto-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="producto.php">
+                        <i class="bi bi-circle"></i><span>Productos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="agregar_producto.php">
+                        <i class="bi bi-circle"></i><span>Agregar Productos</span>
                     </a>
                 </li>
             </ul>

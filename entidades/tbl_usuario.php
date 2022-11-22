@@ -5,7 +5,7 @@ class tbl_usuario{
     private $nombres;
     private $apellidos;
     private $email;
-    private $user;
+    private $usuario;
     private $pwd;
     private $estado;
 
@@ -40,12 +40,14 @@ class tbl_usuario{
         $this->email = $email;
     }
 
-    public function getUser(){
-        return $this->user;
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 
-    public function setUser($user){
-        $this->user = $user;
+    public function setUsuario($usuario)
+    {
+        $this->usuario = $usuario;
     }
 
     public function getPwd(){

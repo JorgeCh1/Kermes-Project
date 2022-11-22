@@ -1,13 +1,13 @@
 <?php
 
-require_once '../entidades/tbl_usuario.php';
-require_once '../datos/dt_tbl_usuario.php';
-require_once '../controladores/usuarioController.php';
+require_once '../entidades/tbl_categoria_producto.php';
+require_once '../datos/dt_tbl_categoria.php';
+require_once '../controladores/categoriaController.php';
 if(isset($_POST['m'])){
     $metodo = $_POST['m'];
-    if(method_exists("usuarioController",$metodo))
+    if(method_exists("categoriaController",$metodo))
     {
-        usuarioController::{$metodo}();
+        categoriaController::{$metodo}();
     }
 }
 ?>
@@ -291,21 +291,21 @@ if(isset($_POST['m'])){
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Agregar Usuario</h1>
+      <h1>Agregar Categoria</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="#">Home</a></li>
           <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Agregar Usuario</li>
+          <li class="breadcrumb-item active">Agregar Categoria</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
+   <section class="section">
         <!-- Formulario para agregar Usuario-->
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Agregar datos del Usuario</h5>
+                <h5 class="card-title">Agregar datos de la categoria</h5>
     
                 <!-- Floating Labels Form -->
                 <form class="row g-3 needs-validation" novalidate method="POST">
@@ -325,9 +325,9 @@ if(isset($_POST['m'])){
                             </div>
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <input type="text" class="form-control" id="validationCustom02" id="floatingName" placeholder="Your Name"
-                                        name="apellido" required>
-                                    <label for="floatingName" id="validationCustom02">Apellidos</label>
+                                    <input type="text" class="form-control" id="validationCustom02" id="floatingName" placeholder="Your Description"
+                                        name="descripcion" required>
+                                    <label for="floatingName" id="validationCustom02">Descripcion</label>
                                     <div class="valid-feedback">
                             
                                     </div>
@@ -336,54 +336,13 @@ if(isset($_POST['m'])){
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
-                        <div class="form-floating">
-                            <input type="email" class="form-control" id="validationCustom03" id="floatingName" placeholder="Your Name"
-                                name="email" required>
-                            <label for="floatingName" id="validationCustom03">Correo Electrónico</label>
-                            <div class="valid-feedback">
-                        
-                            </div>
-                            <div class="invalid-feedback">
-                                Rellena este campo y/o ingresa un correo electrónico válido
-                            </div>
-                        </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom04" id="floatingEmail" placeholder="Your Email"
-                                    name="usuario" required>
-                                <label for="floatingEmail" id="validationCustom04">Usuario</label>
-                                <div class="valid-feedback">
-                        
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-                    <div class="col-md-6">
-                        <div class="form-floating">
-                            <input type="password" class="form-control" id="validationCustom05" id="floatingPassword" placeholder="Password"
-                                name="pwd" required>
-                            <label for="floatingPassword" id="validationCustom05">Contraseña</label>
-                            <div class="valid-feedback">
-                        
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                        </div>
-                    </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-outline-primary">Agregar Usuario</button>
-                        <input type="hidden" name="m" value="guardarUsuario">
+                        <button type="submit" class="btn btn-outline-primary">Agregar Categoria</button>
+                        <input type="hidden" name="m" value="guardarCategoria">
                         <button type="button" class="btn btn-outline-secondary">Cancelar</button>
                     </div>
                 </form><!-- End floating Labels Form -->
     </section>
-
-    
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
