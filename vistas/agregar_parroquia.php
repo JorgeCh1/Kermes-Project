@@ -1,3 +1,16 @@
+<?php
+
+require_once '../entidades/tbl_parroquia.php';
+require_once '../datos/dt_tbl_parroquia.php';
+require_once '../controladores/parroquiaController.php';
+if (isset($_POST['m'])) {
+    $metodo = $_POST['m'];
+    if (method_exists("parroquiaController", $metodo)) {
+        parroquiaController::{$metodo}();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -173,7 +186,7 @@
                         <div class="col-md-12">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom02" id="floatingName"
-                                    placeholder="Your Adress" name="direccion" required>
+                                    placeholder="Your Name" name="direccion" required>
                                 <label for="floatingName" id="validationCustom02">Direccion</label>
                                 <div class="valid-feedback">
 
@@ -186,21 +199,21 @@
                         <div class="col-md-12">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom03" id="floatingName"
-                                    placeholder="Your Number" name="telefono" required>
+                                    placeholder="Your Name" name="telefono" required>
                                 <label for="floatingName" id="validationCustom03">Teléfono</label>
                                 <div class="valid-feedback">
 
                                 </div>
                                 <div class="invalid-feedback">
-                                    Rellena este campo
+                                    Rellena este campo y/o ingresa un correo electrónico válido
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom04" id="floatingName"
-                                    placeholder="Your Parroco" name="parroco" required>
-                                <label for="floatingName" id="validationCustom04">Parroco</label>
+                                <input type="text" class="form-control" id="validationCustom05" id="floatingPassword"
+                                    placeholder="Password" name="parroco" required>
+                                <label for="floatingPassword" id="validationCustom05">Parroco</label>
                                 <div class="valid-feedback">
 
                                 </div>
@@ -212,7 +225,7 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom5" id="floatingName"
-                                    placeholder="Your URL" name="URL" required>
+                                    placeholder="Your URL" name="sitio_web" required>
                                 <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
                                 <label for="floatingName" id="validationCustom5">Sitio Web de la Parroquia</label>
                                 <div class="valid-feedback">
@@ -226,9 +239,9 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="file" id="formFile" name="logo"
-                                        id="validationCustom6" required>
                                     <span class="input-group-text" id="basic-addon3">Logo de La Parroquia</span>
+                                    <input id="validationCustom6" class="form-control" type="file" name="file"
+                                        required />
                                     <div class="valid-feedback">
 
                                     </div>
@@ -240,6 +253,7 @@
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary">Agregar Parroquia</button>
+                            <input type="hidden" name="m" value="guardarParroquia">
                             <button type="button" class="btn btn-outline-secondary">Cancelar</button>
                         </div>
                     </form><!-- End floating Labels Form -->

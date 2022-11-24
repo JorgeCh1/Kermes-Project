@@ -8,24 +8,23 @@ class dt_tbl_parroquia extends Conexion{
     {    
         try
         {
-            $sql = "SELECT * FROM tbl_parroquia where estado<>3;";
+            $sql = "SELECT * FROM tbl_parroquia;";
             $result = array();
             $stm = $this->conectar()->prepare($sql);
             $stm->execute();
 
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
             {
-                $tp = new tbl_productos();
-                $tp->setIdProducto($r->id_producto);
-                $tp->setIdComunidad($r->id_comunidad);
-                $tp->setIdCatProducto($r->id_cat_producto);
-                $tp->setNombre($r->nombre);
-                $tp->setDescripcion($r->descripcion);
-                $tp->setCantidad($r->cantidad);
-                $tp->setPreciovSugerido($r->preciov_sugerido);
-                $tp->setEstado($r->estado);
+                $tu = new tbl_parroquia();
+                $tu->setIdParroquia($r->idParroquia);
+                $tu->setNombre($r->nombre);
+                $tu->setDireccion($r->direccion);
+                $tu->setTelefono($r->telefono);
+                $tu->setParroco($r->parroco);
+                $tu->setLogo($r->logo);
+                $tu->setSitioWeb($r->sitio_web);
 
-                $result[] = $tp;
+                $result[] = $tu;
             }
             return $result;
         } catch (Exception $e)
@@ -34,22 +33,22 @@ class dt_tbl_parroquia extends Conexion{
         }
     }
 
-    public function guardarProductos(tbl_productos $tp)
+    public function guardarParroquia(tbl_parroquia $tu)
     {
         try 
         {
             
-            $sql = "INSERT INTO tbl_productos (nombre, descripcion, cantidad, preciov_sugerido, estado) VALUES 
-                    (?,?,?,?,1)";
+            $sql = "INSERT INTO `dbkermesse`.`tbl_parroquia` (`nombre`, `direccion`, `telefono`, `parroco`, `logo`, `sitio_web`)
+             VALUES (?, ?, ?, ?, ?, ?);";
             $query = $this->conectar()->prepare($sql)->execute(array(
-                $tp->getNombre(), 
-                $tp->getDescripcion(), 
-                $tp->getCantidad(), 
-                $tp->getPreciovSugerido()
+                $tu->getNombre(), 
+                $tu->getDireccion(), 
+                $tu->getTelefono(), 
+                $tu->getParroco(), 
+                $tu->getLogo(),
+                $tu->getSitioWeb(),
             ));
-
             var_dump($query);
-            
         } 
         catch (Exception $e) 
         {
@@ -57,18 +56,21 @@ class dt_tbl_parroquia extends Conexion{
         }
         
     }
-    public function editarProductos(tbl_productos $tp)
+
+    public function editarParroquia(tbl_parroquia $tu)
     {
         try 
         {
-            $sql = 'UPDATE tbl_productos SET nombres = ?, descripcion = ?, cantidad = ?, preciov_sugerido = ?, estado = 2 where id_producto = ?';
+            $sql = 'UPDATE tbl_parroquia SET nombre = ?, direccion = ?, telefono = ?, parroco = ?, logo = ?, sitio_web = ? where idParroquia = ?';
             $query = $this->conectar()->prepare($sql);
             $query->execute(array(
-                $tp->getNombre(),
-                $tp->getDescripcion(),
-                $tp->getCantidad(),
-                $tp->getPreciovSugerido(),
-                $tp->getIdProducto()
+                $tu->getNombre(),
+                $tu->getDireccion(),
+                $tu->getTelefono(),
+                $tu->getParroco(),
+                $tu->getLogo(),
+                $tu->getSitioWeb(),
+                $tu->getIdParroquia()
             ));
         } 
         catch (Exception $e) 
@@ -76,46 +78,43 @@ class dt_tbl_parroquia extends Conexion{
             die($e->getMessage());
         }
     }
-
-    public function mostrarProductos($id_producto)
+    public function mostrarParroquia($idParroquia)
     {
         try 
         {
-            $sql = "SELECT * FROM tbl_productos where estado<>3 and id_producto = ?;"; 
-            //$result = array(); 
+            $sql = "SELECT * FROM tbl_parroquia where idParroquia = ?;"; 
             $stm = $this->conectar()->prepare($sql);
-            $stm->execute(array($id_producto));
+            $stm->execute(array($idParroquia));
 
             $r = $stm->fetch(PDO::FETCH_OBJ);
 
-            $tp = new tbl_productos();
+            $tu = new tbl_parroquia();
 
-            $tp->setIdProducto($r->id_producto);
-            $tp->setIdComunidad($r->id_comunidad);
-            $tp->setIdCatProducto($r->id_cat_producto);
-            $tp->setNombre($r->nombre);
-            $tp->setDescripcion($r->descripcion);
-            $tp->setCantidad($r->cantidad);
-            $tp->setPreciovSugerido($r->preciov_sugerido);
-            $tp->setEstado($r->estado);
+            $tu->setIdParroquia($r->idParroquia);
+            $tu->setNombre($r->nombre);
+            $tu->setDireccion($r->direccion);
+            $tu->setTelefono($r->telefono);
+            $tu->setParroco($r->parroco);
+            $tu->setLogo($r->logo);
+            $tu->setSitioWeb($r->sitio_web);
 
-            //$result[] = $tp;   
-            return $tp;
+            return $tu;
         } 
         catch (Exception $e) 
         {
             die($e->getMessage());
         }
     }
-    public function eliminarProductos($id_producto)
+
+    public function eliminarParroquia($idParroquia)
     {
         try 
         {
-            $sql = "DELETE FROM tbl_producto WHERE id_producto = ?";
+            $sql = "DELETE FROM `dbkermesse`.`tbl_parroquia` WHERE idParroquia = ?;";
             $query = $this->conectar()->prepare($sql);
             
             $query->execute(array(
-                $id_producto
+                $idParroquia
             ));
             
         } 

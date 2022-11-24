@@ -47,7 +47,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="parroquias.php">
+                    <a href="parroquia.php">
                         <i class="bi bi-circle"></i><span>Parroquias</span>
                     </a>
                 </li>
