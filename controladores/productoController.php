@@ -11,6 +11,8 @@ class productoController{
     public static function guardarProductos(){
         try 
         {
+            $id_comunidad = $_REQUEST['id_comunidad'];
+            $id_cat_producto = $_REQUEST['id_categoria'];
             $nombre = $_REQUEST['nombre'];
             $descripcion = $_REQUEST['descripcion'];
             $cantidad = $_REQUEST['cantidad'];
@@ -20,6 +22,8 @@ class productoController{
             $dtp = new dt_tbl_productos();
             
 
+            $tp->setIdComunidad($id_comunidad);
+            $tp->setIdCatProducto($id_cat_producto);
             $tp->setNombre($nombre);
             $tp->setDescripcion($descripcion);
             $tp->setCantidad($cantidad);

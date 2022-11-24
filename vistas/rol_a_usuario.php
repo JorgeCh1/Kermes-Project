@@ -2,12 +2,16 @@
 
 require_once '../entidades/tbl_usuario.php';
 require_once '../entidades/tbl_rol.php';
+require_once '../entidades/vw_rol_usuario.php';
 require_once '../datos/dt_tbl_usuario.php';
 require_once '../datos/dt_tbl_rol.php';
+require_once '../datos/dt_tbl_rol_usuario.php';
 require_once '../controladores/usuarioController.php';
+require_once '../controladores/rolUsuarioController.php';
 
 $dtu = new dt_tbl_usuario();
 $dtr = new dt_tbl_rol();
+$dtur = new dt_rol_usuario();
 $varId_usuario = 0;
 if(isset($varId_usuario))
 {
@@ -16,14 +20,15 @@ if(isset($varId_usuario))
 
 $data_usuario = $dtu->mostrarUsuario($varId_usuario);
 $lista_rol = $dtr->listarRol();
+$lista_rol_usuario = $dtur->listarRolUsuario($varId_usuario);
 
 if(isset($_POST['m'])){
     $metodo = $_POST['m'];
-    if(method_exists("usuarioController",$metodo))
+    if(method_exists("rolUsuarioController",$metodo))
     {
-        usuarioController::{$metodo}();
+        rolUsuarioController::{$metodo}();
     }
-
+   
 }
 ?>
 <!DOCTYPE html>
@@ -326,18 +331,30 @@ if(isset($_POST['m'])){
                             <h5 class="card-title">Lista de Roles</h5>
                             <h4 class="card-title">
                                 <?php echo $data_usuario->getNombres() . " ". $data_usuario->getApellidos(); ?></h4>
-                            <div class="row mb-3 mt-3">
-                                <label class="col-sm-2">Seleccionar Rol:</label>
-                                <select class="col-sm-10" name="" id="">
-                                    <option value="0">SELECCIONE</option>
-                                    <?php
-                        foreach ($lista_rol as $rol):
-                    ?>
-                                    <option value="<?php echo $rol->getIdRol(); ?>">
-                                        <?php echo $rol->getRolDescripcion(); ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
+
+                            <form action="" method="post">
+                                <div class="row mb-3 mt-3">
+                                    <input type="hidden" name="id_usuario"
+                                        value="<?php echo $data_usuario->getIdUsuario(); ?>">
+                                    <label class="col-sm-2">Seleccionar Rol:</label>
+                                    <select class="col-sm-10" name="id_rol" id="">
+                                        <option value="0">SELECCIONE</option>
+                                        <?php
+                                foreach ($lista_rol as $rol):
+                            ?>
+                                        <option value="<?php echo $rol->getIdRol(); ?>">
+                                            <?php echo $rol->getRolDescripcion(); ?></option>
+                                        <?php endforeach; ?>
+
+                                    </select>
+                                </div>
+                                <div class="col-sm-10 mb-4">
+                                    <button type="submit" id="rol" class="btn btn-primary">Asignar rol</button>
+                                    <input type="hidden" name="m" value="asignarUsuarioRol">
+                                </div>
+
+                            </form>
+
                             <table class="table usuariosTable">
                                 <thead>
                                     <tr>
@@ -347,7 +364,14 @@ if(isset($_POST['m'])){
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <?php
+                    foreach($lista_rol_usuario as $data): 
+                  ?>
+                                    <tr>
+                                        <td><?php echo $data->getIdRol(); ?></td>
+                                        <td><?php echo $data->getRolDescripcion(); ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
