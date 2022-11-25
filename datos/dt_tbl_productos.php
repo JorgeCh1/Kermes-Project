@@ -17,11 +17,8 @@ class dt_tbl_productos extends Conexion{
             {
                 $tp = new tbl_productos();
                 $tp->setIdProducto($r->id_producto);
-                $tp->setIdComunidad($r->id_comunidad);
-                $tp->setIdCatProducto($r->id_cat_producto);
                 $tp->setNombre($r->nombre);
                 $tp->setDescripcion($r->descripcion);
-                $tp->setCantidad($r->cantidad);
                 $tp->setPreciovSugerido($r->preciov_sugerido);
                 $tp->setEstado($r->estado);
 

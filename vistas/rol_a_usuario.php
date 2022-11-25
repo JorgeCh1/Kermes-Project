@@ -402,6 +402,11 @@ if(isset($_POST['m'])){
     <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script>
+    document.getElementById("boton").addEventListener("click", function(e) {
+        e.preventDefault();
+    })
+    </script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>

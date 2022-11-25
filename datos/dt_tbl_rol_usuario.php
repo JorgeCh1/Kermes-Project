@@ -8,7 +8,7 @@ class dt_rol_usuario extends Conexion{
     {
         try 
         {
-            $sql = "SELECT id_rol, rol_descripcion FROM vw_usuario_rol where id_usuario = ?;"; 
+            $sql = "SELECT id_rol, rol_descripcion FROM vw_rol_usuario where id_usuario = ?;"; 
             $result = array(); 
             $stm = $this->conectar()->prepare($sql);
             $stm->execute(array($id_usuario));

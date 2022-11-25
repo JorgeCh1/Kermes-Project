@@ -19,6 +19,14 @@ $ta = new tbl_comunidad();
 $dta = new dt_tbl_comunidad();
 $ca = new comunidadController();
 
+if(isset($_POST['m'])){
+    $metodo = $_POST['m'];
+    if(method_exists("comunidadController",$metodo))
+    {
+        comunidadController::{$metodo}();
+    }
+}
+
 require_once '../entidades/tbl_categoria_producto.php';
 require_once '../datos/dt_tbl_categoria.php';
 require_once '../controladores/categoriaController.php';
@@ -26,6 +34,15 @@ require_once '../controladores/categoriaController.php';
 $tu = new tbl_categoria_producto();
 $dtu = new dt_tbl_categoria();
 $cu = new categoriaController();
+
+if(isset($_POST['m'])){
+    $metodo = $_POST['m'];
+    if(method_exists("categoriaController",$metodo))
+    {
+        categoriaController::{$metodo}();
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -329,7 +346,7 @@ $cu = new categoriaController();
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary">Agregar Producto</button>
-                            <input type="hidden" name="m" value="guardarProducto">
+                            <input type="hidden" name="m" value="guardarProductos">
                             <button type="button" class="btn btn-outline-secondary">Cancelar</button>
                         </div>
                     </form>

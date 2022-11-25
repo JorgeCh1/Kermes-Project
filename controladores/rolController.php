@@ -8,7 +8,7 @@ class rolController
 
     public function __construct()
     {
-        $this->dt_rol = new Dt_tbl_rol();
+        $this->dt_rol = new dt_tbl_rol();
     }
     public static function guardarRol()
     {
