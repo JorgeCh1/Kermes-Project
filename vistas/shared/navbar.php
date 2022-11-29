@@ -33,12 +33,12 @@
         </li><!-- End Components Nav -->
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#parroquia-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-people"></i><span>Comunidad</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-people"></i><span>Comunidades</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="parroquia-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
                     <a href="comunidad.php">
-                        <i class="bi bi-circle"></i><span>Comunidad</span>
+                        <i class="bi bi-circle"></i><span>Comunidades</span>
                     </a>
                 </li>
                 <li>
@@ -69,8 +69,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="agregar_categoriaProd.php">
+                    <a href="categoria.php">
                         <i class="bi bi-circle"></i><span>Categoría de Productos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="agregar_categoriaProd.php">
+                        <i class="bi bi-circle"></i><span>Agregar categoría de Productos</span>
                     </a>
                 </li>
                 <li>

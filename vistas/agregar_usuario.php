@@ -296,8 +296,7 @@ if(isset($_POST['m'])){
             <h1>Agregar Usuario</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item">Pages</li>
+                    <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
                     <li class="breadcrumb-item active">Agregar Usuario</li>
                 </ol>
             </nav>

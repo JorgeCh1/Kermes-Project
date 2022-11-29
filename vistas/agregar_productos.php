@@ -262,9 +262,8 @@ if(isset($_POST['m'])){
             <h1>Agregar Producto</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item">Pages</li>
-                    <li class="breadcrumb-item active">Productos</li>
+                    <li class="breadcrumb-item">Productos</li>
+                    <li class="breadcrumb-item active">Agregar Productos</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -297,7 +296,7 @@ if(isset($_POST['m'])){
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingCity" placeholder="City"
                                         name="preciov_sugerido">
-                                    <label for="floatingCity">Precio</label>
+                                    <label for="floatingCity">Precio Sugerido</label>
                                 </div>
                             </div>
                         </div>
@@ -319,7 +318,7 @@ if(isset($_POST['m'])){
                                     foreach ($dtu->listarCategoriaPrueba() as $r):
                                     ?>
                                         <option>
-                                            <?php echo $r->getIdCategoriaProducto(); ?>&nbsp;<?php echo $r->getNombre(); ?>
+                                            <?php echo $r->getNombre(); ?>
                                         </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -336,7 +335,7 @@ if(isset($_POST['m'])){
                                     foreach ($dta->listarComunidadPrueba() as $r):
                                     ?>
                                         <option>
-                                            <?php echo $r->getIdComunidad(); ?>&nbsp;<?php echo $r->getNombre(); ?>
+                                            <?php echo $r->getNombre(); ?>
                                         </option>
                                         <?php endforeach; ?>
                                     </select>

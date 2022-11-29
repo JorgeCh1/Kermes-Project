@@ -3,15 +3,15 @@ require_once '../entidades/tbl_productos.php';
 require_once '../datos/dt_tbl_productos.php';
 require_once '../controladores/productoController.php';
 
-$tp = new tbl_productos();
-$dtp = new dt_tbl_productos();
+$tu = new tbl_productos();
+$dtu = new dt_tbl_productos();
+$cu = new productoController();
 
-if(isset($_GET['id_producto']))
-{
+
+if (isset($_GET['id_producto'])) {
     $id_producto = $_GET['id_producto'];
-    $dtu->eliminarProductos($id_producto);
+    $dtu->eliminarProducto($id_producto);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -298,8 +298,6 @@ if(isset($_GET['id_producto']))
             <h1>Productos</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item">Pages</li>
                     <li class="breadcrumb-item active">Productos</li>
                 </ol>
             </nav>
@@ -312,12 +310,14 @@ if(isset($_GET['id_producto']))
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Productos Agregados</h5>
-                            <table class="table usuariosTable">
+                            <table class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
+                                        <!--<th>ID Comunidad</th>
+                                        <th>ID Categoria</th>-->
                                         <th>Nombre</th>
-                                        <th>Descripción</th>
+                                        <th>Descripcion</th>
                                         <th>Cantidad</th>
                                         <th>Precio Sugerido</th>
                                         <th>Acción</th>
@@ -325,25 +325,29 @@ if(isset($_GET['id_producto']))
                                 </thead>
                                 <tbody>
                                     <?php
-            foreach($dtp->listarProductos() as $r):
-          ?>
+                  foreach ($dtu->listarProducto() as $r):
+                  ?>
                                     <tr>
                                         <td><?php echo $r->getIdProducto(); ?></td>
+                                        <!--<td><?php echo $r->getIdComunidad(); ?></td>
+                                        <td><?php echo $r->getIdCatProducto(); ?></td>-->
                                         <td><?php echo $r->getNombre(); ?></td>
                                         <td><?php echo $r->getDescripcion(); ?></td>
                                         <td><?php echo $r->getCantidad(); ?></td>
                                         <td><?php echo $r->getPreciovSugerido(); ?></td>
                                         <td>
                                             <a
-                                                href="editar_producto.php?id_producto=<?php echo $r->getIdProducto(); ?>">
-                                                <i class="bi bi-pencil-square" title="Editar Producto"></i>
+                                                href="editar_productos.php?id_Producto=<?php echo $r->getIdProducto(); ?>">
+                                                <button type="button" class="btn btn-outline-success"
+                                                    title="Editar Producto">Editar</button>
                                             </a>
-                                            <a href="productos.php?id_producto=<?php echo $r->getIdProducto();?>">
-                                                <i class="bi bi-trash3" title="Eliminar Producto"></i>
+                                            <a href="productos.php?id_producto=<?php echo $r->getIdProducto(); ?>">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    title="Eliminar Producto">Eliminar</button>
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php endforeach;?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

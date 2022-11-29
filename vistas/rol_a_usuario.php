@@ -315,8 +315,8 @@ if(isset($_POST['m'])){
             <h1>Agregar Rol a Usuario</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item">Seguridad</li>
+                    <li class="breadcrumb-item">Roles</li>
                     <li class="breadcrumb-item active">Agregar Rol a Usuario</li>
                 </ol>
             </nav>
@@ -329,15 +329,16 @@ if(isset($_POST['m'])){
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Lista de Roles</h5>
-                            <h4 class="card-title">
-                                <?php echo $data_usuario->getNombres() . " ". $data_usuario->getApellidos(); ?></h4>
 
+                            <h4 class="card-title">Usuario
+                                Seleccionado:&nbsp;<?php echo $data_usuario->getNombres() . " ". $data_usuario->getApellidos(); ?>
+                            </h4>
                             <form action="" method="post">
                                 <div class="row mb-3 mt-3">
                                     <input type="hidden" name="id_usuario"
-                                        value="<?php echo $data_usuario->getIdUsuario(); ?>">
-                                    <label class="col-sm-2">Seleccionar Rol:</label>
-                                    <select class="col-sm-10" name="id_rol" id="">
+                                        value="<?php echo $data_usuario->getIdUsuario(); ?>" required>
+                                    <label class="col-sm-2">Seleccionar Rol:</label required>
+                                    <select class="col-sm-10" name="id_rol" id="" required>
                                         <option value="0">SELECCIONE</option>
                                         <?php
                                 foreach ($lista_rol as $rol):
@@ -349,10 +350,9 @@ if(isset($_POST['m'])){
                                     </select>
                                 </div>
                                 <div class="col-sm-10 mb-4">
-                                    <button type="submit" id="rol" class="btn btn-primary">Asignar rol</button>
+                                    <button type="submit" class="btn btn-outline-primary">Asignar Rol</button>
                                     <input type="hidden" name="m" value="asignarUsuarioRol">
                                 </div>
-
                             </form>
 
                             <table class="table usuariosTable">

@@ -1,21 +1,28 @@
 <?php
-require_once '../entidades/tbl_categoria_producto.php';
-require_once '../datos/dt_tbl_categoria.php';
-require_once '../controladores/categoriaController.php';
 
-$tu = new tbl_categoria_producto();
-$dtu = new dt_tbl_categoria();
-$cu = new categoriaController();
+require_once '../entidades/tbl_parroquia.php';
+require_once '../datos/dt_tbl_parroquia.php';
+require_once '../controladores/parroquiaController.php';
 
+$dtu = new dt_tbl_parroquia();
 
-if(isset($_GET['id_categoria']))
+$varId_parroquia = 0;
+if(isset($varId_parroquia))
 {
-    $id_cat_producto = $_GET['id_categoria'];
-    $dtu->eliminarCategoria($id_cat_producto);
+    $varId_parroquia = $_GET['idParroquia'];
 }
 
-?>
+$data_parroquia = $dtu->mostrarParroquia($varId_parroquia);
 
+if(isset($_POST['m'])){
+    $metodo = $_POST['m'];
+    if(method_exists("parroquiaController",$metodo))
+    {
+        parroquiaController::{$metodo}();
+    }
+   
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -281,7 +288,8 @@ if(isset($_GET['id_categoria']))
                         </li>
 
                     </ul><!-- End Profile Dropdown Items -->
-                </li><!-- End Profile Nav -->
+                </li>>
+                <!-- End Profile Nav -->
 
             </ul>
         </nav><!-- End Icons Navigation -->
@@ -297,65 +305,119 @@ if(isset($_GET['id_categoria']))
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Categorias de Productos</h1>
+            <h1>Editar Comunidad</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Productos</li>
-                    <li class="breadcrumb-item active">Categorias de Productos</li>
+                    <li class="breadcrumb-item">Parroquias</li>
+                    <li class="breadcrumb-item active">Editar Parroquia</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
-
         <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
+            <!-- Formulario para editar Parroquia-->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Editar Parroquia</h5>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Categorias Agregadas</h5>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                    foreach($dtu->listarCategoria() as $r):
-                  ?>
-                                    <tr>
-                                        <td><?php echo $r->getIdCategoriaProducto(); ?></td>
-                                        <td><?php echo $r->getNombre(); ?></td>
-                                        <td><?php echo $r->getDescripcion(); ?></td>
-                                        <td>
-                                            <a
-                                                href="editar_categoria.php?id_categoria=<?php echo $r->getIdCategoriaProducto(); ?>">
-                                                <button type="button" class="btn btn-outline-success"
-                                                    title="Editar Categoria">Editar</button>
-                                            </a>
-                                            <a
-                                                href="categoria.php?id_categoria=<?php echo $r->getIdCategoriaProducto(); ?>">
-                                                <button type="button" class="btn btn-outline-danger"
-                                                    title="Eliminar Categoria">Eliminar</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach;?>
-                                </tbody>
-                            </table>
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3 needs-validation" novalidate method="POST">
+                        <div class="col-md-12">
+                            <input type="hidden" value="guardar" name="txtaccion" />
+                            <div class="form-floating">
+                                <input type="hidden" value="<?php echo $data_parroquia->getIdParroquia(); ?>"
+                                    name="idParroquia" />
+                                <input type="text" class="form-control" id="validationCustom01" id="floatingName"
+                                    name="nombre" value="<?php echo $data_parroquia->getNombre(); ?>" required>
+                                <label for="floatingName" id="validationCustom01">Nombre</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="validationCustom02" id="floatingName"
+                                    name="direccion" value="<?php echo $data_parroquia->getDireccion(); ?>" required>
+                                <label for="floatingName" id="validationCustom02">Direccion</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="validationCustom03" id="floatingName"
+                                    name="telefono" value="<?php echo $data_parroquia->getTelefono(); ?>" required>
+                                <label for="floatingName" id="validationCustom03">Teléfono</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo y/o ingresa un correo electrónico válido
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="validationCustom05" id="floatingPassword"
+                                    name="parroco" value="<?php echo $data_parroquia->getParroco(); ?>" required>
+                                <label for="floatingPassword" id="validationCustom05">Parroco</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="validationCustom5" id="floatingName"
+                                    name="sitio_web" value="<?php echo $data_parroquia->getSitioWeb(); ?>" required>
+                                <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                                <label for="floatingName" id="validationCustom5">Sitio Web de la Parroquia</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <div class="col-sm-10">
+                                    <input id="validationCustom6" class="form-control" type="file" name="file"
+                                        value="<?php echo $data_parroquia->getSitioWeb(); ?>" required />
+
+                                    <span class="input-group-text" id="basic-addon3">Logo de La Parroquia</span>
+                                    <div class="valid-feedback">
+
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Ingresa tu logo
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-primary">Editar Parroquia</button>
+                            <input type="hidden" name="m" value="editarParroquia">
+                            <button type="submit" href="parroquia.php"
+                                class="btn btn-outline-secondary">Cancelar</button>
+                            <input type="hidden" value="enviar" onclick="location='/vistas/parroquia.php'" />
+                        </div>
+                    </form><!-- End floating Labels Form -->
         </section>
 
-
-    </main>
-    <!-- End #main -->
+    </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <?php

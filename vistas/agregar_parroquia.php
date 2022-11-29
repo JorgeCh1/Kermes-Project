@@ -154,8 +154,7 @@ if (isset($_POST['m'])) {
             <h1>Agregar Parroquia</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item">Pages</li>
+                    <li class="breadcrumb-item">Comunidades</li>
                     <li class="breadcrumb-item active">Agregar Parroquia</li>
                 </ol>
             </nav>

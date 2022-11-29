@@ -296,8 +296,7 @@ if(isset($_POST['m'])){
             <h1>Agregar Categoria</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item">Pages</li>
+                    <li class="breadcrumb-item">Categoría de Productos</li>
                     <li class="breadcrumb-item active">Agregar Categoria</li>
                 </ol>
             </nav>
