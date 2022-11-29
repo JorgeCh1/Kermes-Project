@@ -1,6 +1,7 @@
 <?php
 
-class tbl_parroquia{
+class tbl_parroquia
+{
     private $idParroquia;
     private $nombre;
     private $direccion;
@@ -9,18 +10,20 @@ class tbl_parroquia{
     private $logo;
     private $sitio_web;
 
-    public function getIdParroquia(){
+
+    public function getIdparroquia()
+    {
         return $this->idParroquia;
     }
 
-    public function setIdParroquia($idParroquia){
+    public function setIdparroquia($idParroquia)
+    {
         $this->idParroquia = $idParroquia;
     }
 
     public function getNombre(){
         return $this->nombre;
     }
-
     public function setNombre($nombre){
         $this->nombre = $nombre;
     }
@@ -29,49 +32,45 @@ class tbl_parroquia{
         return $this->direccion;
     }
 
-
     public function setDireccion($direccion){
         $this->direccion = $direccion;
     }
-
     public function getTelefono(){
         return $this->telefono;
     }
-
     public function setTelefono($telefono){
         $this->telefono = $telefono;
     }
     public function getParroco(){
         return $this->parroco;
     }
-
     public function setParroco($parroco){
         $this->parroco = $parroco;
+        
     }
 
     public function getLogo(){
         return $this->logo;
     }
-
     public function setLogo($logo){
         $this->logo = $logo;
+
     }
 
-    public function getSitioWeb(){
+    public function getSitio_web()
+    {
         return $this->sitio_web;
+
     }
 
-    public function setSitioWeb($sitio_web){
+    public function setSitio_web($sitio_web)
+    {
         $this->sitio_web = $sitio_web;
     }
-     //Otro método
-    /*
-    public function __GET($k)
-    { 
-        return $this->$k; 
-    }
-	public function __SET($k, $v)
-    { 
-        return $this->$k = $v; 
-    } */
+
+
+
+    
+    
+    
 }

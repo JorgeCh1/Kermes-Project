@@ -28,13 +28,13 @@ class rol_usuario
     public function setTblRolIdRol($tbl_rol_id_rol){
         $this->tbl_rol_id_rol = $tbl_rol_id_rol;
     }
-    
 
     //OTRO MÉTODO
     /*
     public function __GET($k){
         return $this->$k;
     }
+
     public function __SET($k, $v){
         $this->$k = $v;
     }

@@ -144,8 +144,8 @@ if (isset($_POST['m'])) {
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -168,6 +168,7 @@ if (isset($_POST['m'])) {
 
                     <!-- Floating Labels Form -->
                     <form class="row g-3 needs-validation" novalidate method="POST">
+
                         <div class="col-md-12">
                             <input type="hidden" value="guardar" name="txtaccion" />
                             <div class="form-floating">
@@ -223,7 +224,7 @@ if (isset($_POST['m'])) {
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom5" id="floatingName"
+                                <input type="url" class="form-control" id="validationCustom5" id="floatingName"
                                     placeholder="Your URL" name="sitio_web" required>
                                 <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
                                 <label for="floatingName" id="validationCustom5">Sitio Web de la Parroquia</label>
@@ -238,9 +239,10 @@ if (isset($_POST['m'])) {
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <div class="col-sm-10">
-                                    <span class="input-group-text" id="basic-addon3">Logo de La Parroquia</span>
-                                    <input id="validationCustom6" class="form-control" type="file" name="file"
+                                    <input id="validationCustom6" class="form-control" type="file" name="logo"
                                         required />
+
+                                    <span class="input-group-text" id="basic-addon3">Logo de La Parroquia</span>
                                     <div class="valid-feedback">
 
                                     </div>
@@ -253,8 +255,10 @@ if (isset($_POST['m'])) {
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary">Agregar Parroquia</button>
                             <input type="hidden" name="m" value="guardarParroquia">
-                            <button type="button" class="btn btn-outline-secondary">Cancelar</button>
                         </div>
+
+
+
                     </form><!-- End floating Labels Form -->
         </section>
 
@@ -263,7 +267,7 @@ if (isset($_POST['m'])) {
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

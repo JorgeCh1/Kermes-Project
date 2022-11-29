@@ -1,34 +1,26 @@
 <?php
 
-require_once '../entidades/tbl_usuario.php';
-require_once '../entidades/tbl_rol.php';
-require_once '../entidades/vw_rol_usuario.php';
-require_once '../datos/dt_tbl_usuario.php';
-require_once '../datos/dt_tbl_rol.php';
-require_once '../datos/dt_tbl_rol_usuario.php';
-require_once '../controladores/usuarioController.php';
-require_once '../controladores/rolUsuarioController.php';
+require_once '../entidades/tbl_categoria_productos.php';
+require_once '../datos/dt_tbl_categoriaProducto.php';
+require_once '../controladores/categoriaProductoController.php';
 
-$dtu = new dt_tbl_usuario();
-$dtr = new dt_tbl_rol();
-$dtur = new dt_rol_usuario();
-$varId_usuario = 0;
-if(isset($varId_usuario))
-{
-    $varId_usuario = $_GET['id_usuario'];
+
+$tbp = new tbl_categoria_producto();
+$dtp = new dt_tbl_categoriaProducto();
+
+$varid_categoria_producto = 0;
+if (isset($_GET['id_categoria_producto'])) {
+    $varid_categoria_producto = $_GET['id_categoria_producto'];
 }
 
-$data_usuario = $dtu->mostrarUsuario($varId_usuario);
-$lista_rol = $dtr->listarRol();
-$lista_rol_usuario = $dtur->listarRolUsuario($varId_usuario);
+$data_categoriaP = $dtp->mostrarCategoriaPorducto($varid_categoria_producto);
 
-if(isset($_POST['m'])){
+if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if(method_exists("rolUsuarioController",$metodo))
-    {
-        rolUsuarioController::{$metodo}();
+
+    if (method_exists("categoriaProductoController", $metodo)) {
+        categoriaProductoController::{$metodo}();
     }
-   
 }
 ?>
 <!DOCTYPE html>
@@ -305,89 +297,92 @@ if(isset($_POST['m'])){
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Agregar Rol a Usuario</h1>
+            <h1>Editar Categoria</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Seguridad</li>
-                    <li class="breadcrumb-item">Roles</li>
-                    <li class="breadcrumb-item active">Agregar Rol a Usuario</li>
+                    <li class="breadcrumb-item">Categorías de Productos</li>
+                    <li class="breadcrumb-item active">Editar Categoria</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
+            <!-- Formulario para editar Categoria-->
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Editar Categoria</h5>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Lista de Roles</h5>
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3 needs-validation" novalidate method="POST">
+                        <div class="col-md-12">
+                            <input type="hidden" value="guardar" name="id_categoria_gastos" />
+                            <div class="form-floating">
+                                <input type="hidden" value="<?php echo $data_categoriaP->getId_categoria_producto(); ?>"
+                                    name="id_categoria_gastos" />
+                                <input type="number" class="form-control" id="validationCustom01" id="floatingName"
+                                    name="id_categoria_gastos"
+                                    value="<?php echo $data_categoriaP->getId_categoria_producto(); ?>" required>
+                                <label for="floatingName" id="validationCustom01">ID</label>
+                                <div class="valid-feedback">
 
-                            <h4 class="card-title">Usuario
-                                Seleccionado:&nbsp;<?php echo $data_usuario->getNombres() . " ". $data_usuario->getApellidos(); ?>
-                            </h4>
-                            <form action="" method="post">
-                                <div class="row mb-3 mt-3">
-                                    <input type="hidden" name="id_usuario"
-                                        value="<?php echo $data_usuario->getIdUsuario(); ?>" required>
-                                    <label class="col-sm-2">Seleccionar Rol:</label required>
-                                    <select class="col-sm-10" name="id_rol" id="" required>
-                                        <option value="0">SELECCIONE</option>
-                                        <?php
-                                foreach ($lista_rol as $rol):
-                            ?>
-                                        <option value="<?php echo $rol->getIdRol(); ?>">
-                                            <?php echo $rol->getRolDescripcion(); ?></option>
-                                        <?php endforeach; ?>
-
-                                    </select>
                                 </div>
-                                <div class="col-sm-10 mb-4">
-                                    <button type="submit" class="btn btn-outline-primary">Asignar Rol</button>
-                                    <input type="hidden" name="m" value="asignarUsuarioRol">
+                                <div class="invalid-feedback">
+                                    Rellena este campo
                                 </div>
-                            </form>
-
-                            <table class="table usuariosTable">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Descripcion</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                    foreach($lista_rol_usuario as $data): 
-                  ?>
-                                    <tr>
-                                        <td><?php echo $data->getIdRol(); ?></td>
-                                        <td><?php echo $data->getRolDescripcion(); ?></td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
+                            </div>
                         </div>
-                    </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="validationCustom02" id="floatingName"
+                                    name="nombre_categoria" value="<?php echo $data_categoriaP->getNombre(); ?>"
+                                    required>
+                                <label for="floatingName" id="validationCustom02">Nombre Categoria:</label>
+                                <div class="valid-feedback">
 
-                </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="validationCustom03" id="floatingName"
+                                    name="descripcion" value="<?php echo $data_categoriaP->getDescripcion(); ?>"
+                                    required>
+                                <label for="floatingName" id="validationCustom03">Descripcion:</label>
+                                <div class="valid-feedback">
 
-            </div>
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-primary">Editar Producto</button>
+                            <input type="hidden" name="m" value="editarCategoriaProducto">
+                            <input type="hidden" value="enviar"
+                                onclick="location='../controladores/categoriaProductoController.php'" />
+                        </div>
+                    </form><!-- End floating Labels Form -->
         </section>
+
 
     </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
@@ -402,11 +397,6 @@ if(isset($_POST['m'])){
     <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
     <script src="assets/vendor/tinymce/tinymce.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
-    <script>
-    document.getElementById("boton").addEventListener("click", function(e) {
-        e.preventDefault();
-    })
-    </script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>

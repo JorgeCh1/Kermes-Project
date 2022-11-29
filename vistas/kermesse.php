@@ -1,15 +1,14 @@
 <?php
 
-require_once '../entidades/tbl_usuario.php';
-require_once '../datos/dt_tbl_usuario.php';
-require_once '../controladores/usuarioController.php';
-if (isset($_POST['m'])) {
-    $metodo = $_POST['m'];
-    if (method_exists("usuarioController", $metodo)) {
-        usuarioController::{$metodo}();
-    }
-}
+include '../entidades/vw_kermesse.php';
+include '../datos/dt_kermesse.php';
+include '../entidades/tbl_kermesse.php';
+
+$dtk = new dt_kermesse();
+$tbv = new tbl_Vw_Kermesse();
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -292,98 +291,78 @@ if (isset($_POST['m'])) {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Agregar Usuario</h1>
+            <h1>Productos</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                    <li class="breadcrumb-item active">Agregar Usuario</li>
+                    <li class="breadcrumb-item active">Productos</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
-            <!-- Formulario para agregar Usuario-->
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Agregar datos del Usuario</h5>
+            <div class="row">
+                <div class="col-lg-12">
 
-                    <!-- Floating Labels Form -->
-                    <form class="row g-3 needs-validation" novalidate method="POST">
-                        <div class="col-md-12">
-                            <input type="hidden" value="guardar" name="txtaccion" />
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom01" id="floatingName"
-                                    placeholder="Your Name" name="nombre" required>
-                                <label for="floatingName" id="validationCustom01">Nombre</label>
-                                <div class="valid-feedback">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Tabla Kermesse</h5>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>ID kermesse</th>
+                                        <th>Parroquia</th>
+                                        <th>Nombre</th>
+                                        <th>Fecha inicio</th>
+                                        <th>Fecha final</th>
+                                        <th>Descripción</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($dtk->listarKermesse() as $r) :
+                                        //  echo $dtu->listarUsuaios(); 
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $r->getCodigo_kermesse(); ?></td>
+                                        <td><?php echo $r->getNombre_Parroquia(); ?></td>
+                                        <td><?php echo $r->getNombre(); ?></td>
+                                        <td><?php echo $r->getFechaInicio(); ?></td>
+                                        <td><?php echo $r->getFechaFinaliacion(); ?></td>
+                                        <td><?php echo $r->getDescripcion() ?></td>
+                                        <td><?php
+                                                if ($r->getEstado() == '1') {
+                                                    echo 'Activo';
+                                                } elseif ($r->getEstado() == '2') {
+                                                    echo 'Editado';
+                                                } elseif ($r->getEstado() == '3') {
+                                                    echo 'Dado de baja';
+                                                }
+                                                ?></td>
+                                        <td>
+                                            <a href="editar_kermesse.php?editK=<?php echo $r->getCodigo_kermesse(); ?>">
+                                                <i class="far fa-2x fa-edit"
+                                                    title="Editar <?php echo $r->getNombre(); ?>"></i>
+                                            </a>
+                                            &nbsp;&nbsp;
 
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
+                                            <a href="kermesse.php?delK=<?php echo $r->getCodigo_kermesse(); ?>">
+                                                <i class="far fa-2x fa-trash-alt"
+                                                    title="Eliminar <?php echo $r->getNombre(); ?>"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    endforeach;
+                                    ?>
+                                </tbody>
+
+                            </table>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom02" id="floatingName"
-                                    placeholder="Your Name" name="apellido" required>
-                                <label for="floatingName" id="validationCustom02">Apellidos</label>
-                                <div class="valid-feedback">
 
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="validationCustom03" id="floatingName"
-                                    placeholder="Your Name" name="email" required>
-                                <label for="floatingName" id="validationCustom03">Correo Electrónico</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo y/o ingresa un correo electrónico válido
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom04" id="floatingEmail"
-                                    placeholder="Your Email" name="usuario" required>
-                                <label for="floatingEmail" id="validationCustom04">Usuario</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input id="txtPassword" type="password" class="form-control" id="validationCustom05"
-                                    id="floatingPassword" placeholder="Password" name="pwd" required>
-                                <label for="floatingPassword" id="validationCustom05">Contraseña</label>
-                                <span class="fa fa-eye-slash icon" class="input-group-text"></span> </button>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-primary">Agregar Usuario</button>
-                            <input type="hidden" name="m" value="guardarUsuario">
-
-                        </div>
-                    </form><!-- End floating Labels Form -->
+                    </div>
         </section>
-
 
     </main><!-- End #main -->
 

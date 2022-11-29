@@ -5,7 +5,7 @@
         <li class="nav-item">
             <a class="nav-link collapsed" href="../index.php">
                 <i class="bi bi-grid"></i>
-                <span>Dashboard</span>
+                <span>Inicio</span>
             </a>
         </li><!-- End Dashboard Nav -->
 
@@ -59,6 +59,23 @@
             </ul>
         </li>
         <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#kermesse-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Kermesse</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="kermesse-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="kermesse.php">
+                        <i class="bi bi-circle"></i><span>Kermesse</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="agregar_kermesse.php">
+                        <i class="bi bi-circle"></i><span>Agregar kermesse</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#producto-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-basket3"></i><span>Productos</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -69,7 +86,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="categoria.php">
+                    <a href="agregar_productos.php">
+                        <i class="bi bi-circle"></i><span>Agregar Productos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="categoria_productos.php">
                         <i class="bi bi-circle"></i><span>Categoría de Productos</span>
                     </a>
                 </li>
@@ -78,14 +100,52 @@
                         <i class="bi bi-circle"></i><span>Agregar categoría de Productos</span>
                     </a>
                 </li>
-                <li>
-                    <a href="agregar_productos.php">
-                        <i class="bi bi-circle"></i><span>Agregar Productos</span>
-                    </a>
-                </li>
 
             </ul>
         </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#gastos-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>Control de gastos</span><i
+                    class="bi bi-chevron-down ms-auto">
+
+                </i>
+            </a>
+
+            <ul id="gastos-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+
+                <li>
+                    <a href="categoria_gastos.php">
+                        <i class="bi bi-circle"></i><span>Categoria Gastos</span>
+
+                    </a>
+                </li>
+                <li>
+                    <a href="agregar_categoriaGastos.php">
+                        <i class="bi bi-circle"></i><span>Agregar Categoria Gastos</span>
+
+                    </a>
+                </li>
+
+                <li>
+
+                    <a href="gastos.php">
+                        <i class="bi bi-circle"></i><span>Gastos</span>
+                    </a>
+                </li>
+
+                <li>
+
+                    <a href="agregar_gastos.php">
+                        <i class="bi bi-circle"></i><span>Registrar Gastos</span>
+                    </a>
+                </li>
+
+
+            </ul><!-- End Control de gastos comunidad Nav -->
+
+        </li>
+
 
     </ul>
 

@@ -1,12 +1,12 @@
 <?php
+
 require_once '../entidades/tbl_productos.php';
 require_once '../datos/dt_tbl_productos.php';
 require_once '../controladores/productoController.php';
 
-if(isset($_POST['m'])){
+if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if(method_exists("productoController",$metodo))
-    {
+    if (method_exists("productoController", $metodo)) {
         productoController::{$metodo}();
     }
 }
@@ -15,33 +15,32 @@ require_once '../entidades/tbl_comunidad.php';
 require_once '../datos/dt_tbl_comunidad.php';
 require_once '../controladores/comunidadController.php';
 
-$ta = new tbl_comunidad();
-$dta = new dt_tbl_comunidad();
-$ca = new comunidadController();
+$tbc = new tbl_comunidad();
+$dtc = new dt_tbl_comunidad();
+$cc = new comunidadController();
 
-if(isset($_POST['m'])){
+if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if(method_exists("comunidadController",$metodo))
-    {
+    if (method_exists("comunidadController", $metodo)) {
         comunidadController::{$metodo}();
     }
 }
 
-require_once '../entidades/tbl_categoria_producto.php';
-require_once '../datos/dt_tbl_categoria.php';
-require_once '../controladores/categoriaController.php';
+require_once '../entidades/tbl_categoria_productos.php';
+require_once '../datos/dt_tbl_categoriaProducto.php';
+require_once '../controladores/categoriaProductoController.php';
 
 $tu = new tbl_categoria_producto();
-$dtu = new dt_tbl_categoria();
-$cu = new categoriaController();
+$dtcp = new dt_tbl_categoriaProducto();
+$cp = new categoriaProductoController();
 
-if(isset($_POST['m'])){
+if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if(method_exists("categoriaController",$metodo))
-    {
-        categoriaController::{$metodo}();
+    if (method_exists("categoriaController", $metodo)) {
+        categoriaProductoController::{$metodo}();
     }
 }
+
 
 ?>
 
@@ -252,8 +251,8 @@ if(isset($_POST['m'])){
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -296,7 +295,7 @@ if(isset($_POST['m'])){
                                 <div class="form-floating">
                                     <input type="text" class="form-control" id="floatingCity" placeholder="City"
                                         name="preciov_sugerido">
-                                    <label for="floatingCity">Precio Sugerido</label>
+                                    <label for="floatingCity">Precio</label>
                                 </div>
                             </div>
                         </div>
@@ -312,13 +311,14 @@ if(isset($_POST['m'])){
                         <div class="col-md-6">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <select class="form-control" id="floatingZip" placeholder="Zip">
+                                    <select class="form-control" id="idCatProducto" name="idCatProducto"
+                                        placeholder="Zip">
                                         <option selected>Selecciona Una Categoria</option>
                                         <?php
-                                    foreach ($dtu->listarCategoriaPrueba() as $r):
-                                    ?>
+                                        foreach ($dtcp->listarCategoriaProdcuto() as $r) :
+                                        ?>
                                         <option>
-                                            <?php echo $r->getNombre(); ?>
+                                            <?php echo $r->getId_categoria_producto(); ?>&nbsp;<?php echo $r->getNombre(); ?>
                                         </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -329,13 +329,13 @@ if(isset($_POST['m'])){
                         <div class="col-md-6">
                             <div class="col-md-12">
                                 <div class="form-floating">
-                                    <select class="form-control" id="floatingZip" placeholder="Zip">
+                                    <select class="form-control" id="idComunidad" name="idComunidad" placeholder="Zip">
                                         <option selected>Selecciona Una Comunidad</option>
                                         <?php
-                                    foreach ($dta->listarComunidadPrueba() as $r):
-                                    ?>
+                                        foreach ($dtc->listarComunidad() as $r) :
+                                        ?>
                                         <option>
-                                            <?php echo $r->getNombre(); ?>
+                                            <?php echo $r->getIdComunidad(); ?>&nbsp;<?php echo $r->getNombre(); ?>
                                         </option>
                                         <?php endforeach; ?>
                                     </select>
@@ -345,8 +345,8 @@ if(isset($_POST['m'])){
                         </div>
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary">Agregar Producto</button>
-                            <input type="hidden" name="m" value="guardarProductos">
-                            <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+                            <input type="hidden" name="m" value="guardarProducto">
+
                         </div>
                     </form>
                     <!-- End floating Labels Form -->
@@ -358,7 +358,7 @@ if(isset($_POST['m'])){
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

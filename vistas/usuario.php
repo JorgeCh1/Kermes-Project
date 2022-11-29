@@ -6,8 +6,7 @@ require_once '../controladores/usuarioController.php';
 $tu = new tbl_usuario();
 $dtu = new dt_tbl_usuario();
 
-if(isset($_GET['id_usuario']))
-{
+if (isset($_GET['id_usuario'])) {
     $id_usuario = $_GET['id_usuario'];
     $dtu->eliminarUsuario($id_usuario);
 }
@@ -328,8 +327,8 @@ if(isset($_GET['id_usuario']))
                                 </thead>
                                 <tbody>
                                     <?php
-            foreach($dtu->listarUsuario() as $r):
-          ?>
+                                    foreach ($dtu->listarUsuario() as $r) :
+                                    ?>
                                     <tr>
                                         <td><?php echo $r->getIdUsuario(); ?></td>
                                         <td><?php echo $r->getNombres(); ?></td>
@@ -341,17 +340,18 @@ if(isset($_GET['id_usuario']))
                                                 <button type="button" class="btn btn-outline-success"
                                                     title="Editar Usuario">Editar</button>
                                             </a>
-                                            <a href="usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
+                                            <a href="usuario.php?id_usuario=<?php echo $r->getIdUsuario(); ?>">
                                                 <button type="button" class="btn btn-outline-danger"
                                                     title="Eliminar Usuario">Eliminar</button>
                                             </a>
-                                            <a href="rol_a_usuario.php?id_usuario=<?php echo $r->getIdUsuario();?>">
+                                            <a
+                                                href="agregar_rol_usuario.php?id_usuario=<?php echo $r->getIdUsuario(); ?>">
                                                 <button type="button" class="btn btn-outline-secondary"
                                                     title="Agregar Rol a Usuario">Asignar Rol</button>
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php endforeach;?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -367,7 +367,7 @@ if(isset($_GET['id_usuario']))
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

@@ -27,7 +27,7 @@ class parroquiaController{
             $tu->setTelefono($telefono);
             $tu->setParroco($parroco);
             $tu->setLogo($logo);
-            $tu->setSitioWeb($sitio_web);
+            $tu->setSitio_web($sitio_web);
 
             $dtu->guardarParroquia($tu);
             
@@ -63,7 +63,7 @@ class parroquiaController{
             $tu->setTelefono($telefono);
             $tu->setParroco($parroco);
             $tu->setLogo($logo);
-            $tu->setSitioWeb($sitio_web);
+            $tu->setSitio_web($sitio_web);
             
             $dtu->editarParroquia($tu);
             

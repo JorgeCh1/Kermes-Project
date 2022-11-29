@@ -1,6 +1,7 @@
 <?php
 
-class tbl_usuario{
+class tbl_usuario
+{
     private $id_usuario;
     private $nombres;
     private $apellidos;
@@ -12,6 +13,7 @@ class tbl_usuario{
     public function getIdUsuario(){
         return $this->id_usuario;
     }
+
     public function setIdUsuario($id_usuario){
         $this->id_usuario = $id_usuario;
     }
@@ -40,13 +42,11 @@ class tbl_usuario{
         $this->email = $email;
     }
 
-    public function getUsuario()
-    {
+    public function getUsuario(){
         return $this->usuario;
     }
 
-    public function setUsuario($usuario)
-    {
+    public function setUsuario($usuario){
         $this->usuario = $usuario;
     }
 
@@ -66,17 +66,14 @@ class tbl_usuario{
         $this->estado = $estado;
     }
 
-    /*OTRO METODO*/
-    //OPCIONAL FUNCTIONA PARA TODOS LOS ATRIBUTOS DE LA CLASE
-
+    //OTRO MÉTODO
     /*
-    public function __GET($k)
-    { 
-        return $this->$k; 
+    public function __GET($k){
+        return $this->$k;
     }
-	public function __SET($k, $v)
-    { 
-        return $this->$k = $v; 
-    } */
-    
+
+    public function __SET($k, $v){
+        $this->$k = $v;
+    }
+    */
 }

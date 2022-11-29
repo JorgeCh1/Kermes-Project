@@ -1,12 +1,18 @@
 <?php
 
-require_once '../entidades/tbl_usuario.php';
-require_once '../datos/dt_tbl_usuario.php';
-require_once '../controladores/usuarioController.php';
+include '../datos/dt_kermesse.php';
+include '../entidades/tbl_vw_KermesseParroquia.php';
+include '../entidades/vw_kermesseUsuario.php';
+include '../controladores/kermesseController.php';
+
+$dtk = new dt_kermesse();
+
+
 if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if (method_exists("usuarioController", $metodo)) {
-        usuarioController::{$metodo}();
+
+    if (method_exists("kermesseController", $metodo)) {
+        kermesseController::{$metodo}();
     }
 }
 ?>
@@ -17,7 +23,6 @@ if (isset($_POST['m'])) {
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
     <title>Kermes Project</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -156,72 +161,6 @@ if (isset($_POST['m'])) {
 
                 </li><!-- End Notification Nav -->
 
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                        <i class="bi bi-chat-left-text"></i>
-                        <span class="badge bg-success badge-number">3</span>
-                    </a><!-- End Messages Icon -->
-
-                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-                        <li class="dropdown-header">
-                            You have 3 new messages
-                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>Maria Hudson</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>4 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>Anna Nelson</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>6 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="message-item">
-                            <a href="#">
-                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                                <div>
-                                    <h4>David Muldon</h4>
-                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                                    <p>8 hrs. ago</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">Show all messages</a>
-                        </li>
-
-                    </ul><!-- End Messages Dropdown Items -->
-
-                </li><!-- End Messages Nav -->
-
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -292,11 +231,11 @@ if (isset($_POST['m'])) {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Agregar Usuario</h1>
+            <h1>Agregar Producto</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                    <li class="breadcrumb-item active">Agregar Usuario</li>
+                    <li class="breadcrumb-item">Productos</li>
+                    <li class="breadcrumb-item active">Agregar Productos</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -305,29 +244,32 @@ if (isset($_POST['m'])) {
             <!-- Formulario para agregar Usuario-->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Agregar datos del Usuario</h5>
+                    <h5 class="card-title">Agregar Datos del Producto</h5>
 
                     <!-- Floating Labels Form -->
                     <form class="row g-3 needs-validation" novalidate method="POST">
-                        <div class="col-md-12">
-                            <input type="hidden" value="guardar" name="txtaccion" />
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom01" id="floatingName"
-                                    placeholder="Your Name" name="nombre" required>
-                                <label for="floatingName" id="validationCustom01">Nombre</label>
-                                <div class="valid-feedback">
 
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
+                        <div class="col-md-12">
+                            <label>Seleccione una parroquia</label>
+                            <select class="form-control" id="idParroquia" name="idParroquia" require>
+                                <option value="">Seleccione...</option>
+                                <?php
+                                foreach ($dtk->listarParroquia() as $c) :
+                                ?>
+                                <option value="<?php echo $c->getIdParroquia(); ?>">
+                                    <?php echo $c->getNombre(); ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
                         </div>
+
+
+
                         <div class="col-md-12">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom02" id="floatingName"
-                                    placeholder="Your Name" name="apellido" required>
-                                <label for="floatingName" id="validationCustom02">Apellidos</label>
+                                    placeholder="Your Name" name="nombre" id="nombre" required>
+                                <label for="floatingName" id="validationCustom02">Nombre de kermesse:</label>
                                 <div class="valid-feedback">
 
                                 </div>
@@ -336,24 +278,13 @@ if (isset($_POST['m'])) {
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="validationCustom03" id="floatingName"
-                                    placeholder="Your Name" name="email" required>
-                                <label for="floatingName" id="validationCustom03">Correo Electrónico</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo y/o ingresa un correo electrónico válido
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom04" id="floatingEmail"
-                                    placeholder="Your Email" name="usuario" required>
-                                <label for="floatingEmail" id="validationCustom04">Usuario</label>
+                                <input type="date" class="form-control" id="validationCustom03" id="floatingName"
+                                    placeholder="Your Name" name="fInicio" id="fInicio" required>
+                                <label for="floatingName" id="validationCustom03">Fecha de inicio::</label>
                                 <div class="valid-feedback">
 
                                 </div>
@@ -362,12 +293,14 @@ if (isset($_POST['m'])) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+
+
+
+                        <div class="col-md-12">
                             <div class="form-floating">
-                                <input id="txtPassword" type="password" class="form-control" id="validationCustom05"
-                                    id="floatingPassword" placeholder="Password" name="pwd" required>
-                                <label for="floatingPassword" id="validationCustom05">Contraseña</label>
-                                <span class="fa fa-eye-slash icon" class="input-group-text"></span> </button>
+                                <input type="date" class="form-control" id="validationCustom03" id="floatingName"
+                                    placeholder="Your Name" name="fFinal" id="fFinal" required>
+                                <label for="floatingName" id="validationCustom03">Fecha de finalización:</label>
                                 <div class="valid-feedback">
 
                                 </div>
@@ -376,16 +309,50 @@ if (isset($_POST['m'])) {
                                 </div>
                             </div>
                         </div>
+
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="validationCustom03" id="floatingName"
+                                    placeholder="Your Name" name="descripcion" id="descripcion" required>
+                                <label for="floatingName" id="validationCustom03">Descripción:</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="validationCustom03" id="floatingName"
+                                    placeholder="Your Name" name="estado" id="estado" required>
+                                <label for="floatingName" id="validationCustom03">Estado:</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="text-center">
-                            <button type="submit" class="btn btn-outline-primary">Agregar Usuario</button>
-                            <input type="hidden" name="m" value="guardarUsuario">
+                            <button type="submit" class="btn btn-outline-primary">Agregar Kermesse</button>
+                            <input type="hidden" name="m" value="guardarKermesse">
 
                         </div>
-                    </form><!-- End floating Labels Form -->
+
+
+                    </form>
+                    <!-- End floating Labels Form -->
+
         </section>
-
-
-    </main><!-- End #main -->
+    </main>
+    <!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <?php

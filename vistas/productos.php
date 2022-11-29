@@ -3,14 +3,12 @@ require_once '../entidades/tbl_productos.php';
 require_once '../datos/dt_tbl_productos.php';
 require_once '../controladores/productoController.php';
 
-$tu = new tbl_productos();
-$dtu = new dt_tbl_productos();
-$cu = new productoController();
-
+$tp = new tbl_productos();
+$dtp = new dt_tbl_productos();
 
 if (isset($_GET['id_producto'])) {
     $id_producto = $_GET['id_producto'];
-    $dtu->eliminarProducto($id_producto);
+    $dtp->eliminarProducto($id_producto);
 }
 ?>
 
@@ -288,8 +286,8 @@ if (isset($_GET['id_producto'])) {
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -309,42 +307,40 @@ if (isset($_GET['id_producto'])) {
 
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">Productos Agregados</h5>
-                            <table class="table table-hover">
+                            <h5 class="card-title">Productos</h5>
+                            <table class="table ProductosTable">
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <!--<th>ID Comunidad</th>
-                                        <th>ID Categoria</th>-->
+                                        <th>Id</th>
                                         <th>Nombre</th>
                                         <th>Descripcion</th>
                                         <th>Cantidad</th>
-                                        <th>Precio Sugerido</th>
-                                        <th>Acción</th>
+                                        <th>Preciov sugerido</th>
+                                        <th>Accion</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                  foreach ($dtu->listarProducto() as $r):
-                  ?>
+                                    foreach ($dtp->listarProducto() as $r) :
+                                    ?>
                                     <tr>
-                                        <td><?php echo $r->getIdProducto(); ?></td>
-                                        <!--<td><?php echo $r->getIdComunidad(); ?></td>
-                                        <td><?php echo $r->getIdCatProducto(); ?></td>-->
+                                        <td><?php echo $r->getId_producto(); ?></td>
                                         <td><?php echo $r->getNombre(); ?></td>
                                         <td><?php echo $r->getDescripcion(); ?></td>
                                         <td><?php echo $r->getCantidad(); ?></td>
-                                        <td><?php echo $r->getPreciovSugerido(); ?></td>
+                                        <td><?php echo $r->getPreciov_sugerido(); ?></td>
+
                                         <td>
                                             <a
-                                                href="editar_productos.php?id_Producto=<?php echo $r->getIdProducto(); ?>">
+                                                href="editar_producto.php?id_producto=<?php echo $r->getId_producto(); ?>">
                                                 <button type="button" class="btn btn-outline-success"
                                                     title="Editar Producto">Editar</button>
                                             </a>
-                                            <a href="productos.php?id_producto=<?php echo $r->getIdProducto(); ?>">
-                                                <button type="button" class="btn btn-outline-danger"
+                                            <a href="productos.php?id_producto=<?php echo $r->getId_producto(); ?>">
+                                                <button type="button" class="btn btn-outline-success"
                                                     title="Eliminar Producto">Eliminar</button>
                                             </a>
+
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -363,7 +359,7 @@ if (isset($_GET['id_producto'])) {
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

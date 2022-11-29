@@ -1,13 +1,13 @@
 <?php
 
-require_once '../entidades/tbl_categoria_producto.php';
-require_once '../datos/dt_tbl_categoria.php';
-require_once '../controladores/categoriaController.php';
-if(isset($_POST['m'])){
+require_once '../entidades/tbl_categoria_productos.php';
+require_once '../datos/dt_tbl_categoriaProducto.php';
+require_once '../controladores/categoriaProductoController.php';
+
+if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if(method_exists("categoriaController",$metodo))
-    {
-        categoriaController::{$metodo}();
+    if (method_exists("categoriaProductoController", $metodo)) {
+        categoriaProductoController::{$metodo}();
     }
 }
 ?>
@@ -286,14 +286,14 @@ if(isset($_POST['m'])){
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Agregar Categoria</h1>
+            <h1>Agregar Categoria de Productos</h1>
             <nav>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">Categoría de Productos</li>
@@ -312,6 +312,7 @@ if(isset($_POST['m'])){
                     <form class="row g-3 needs-validation" novalidate method="POST">
                         <div class="col-md-12">
                             <input type="hidden" value="guardar" name="txtaccion" />
+
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom01" id="floatingName"
                                     placeholder="Your Name" name="nombre" required>
@@ -323,7 +324,10 @@ if(isset($_POST['m'])){
                                     Rellena este campo
                                 </div>
                             </div>
+
+
                         </div>
+
                         <div class="col-md-12">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom02" id="floatingName"
@@ -337,10 +341,10 @@ if(isset($_POST['m'])){
                                 </div>
                             </div>
                         </div>
+
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary">Agregar Categoria</button>
-                            <input type="hidden" name="m" value="guardarCategoria">
-                            <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+                            <input type="hidden" name="m" value="guardarCategoriaProducto">
                         </div>
                     </form><!-- End floating Labels Form -->
         </section>
@@ -349,7 +353,7 @@ if(isset($_POST['m'])){
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

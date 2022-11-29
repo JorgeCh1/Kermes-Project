@@ -2,42 +2,47 @@
 
 require_once("conexion.php");
 require_once("../entidades/tbl_rol.php");
-class dt_tbl_rol extends Conexion
-{
+class dt_tbl_rol extends Conexion{
     public function listarRol()
-    {    
-        try
+    {
+        try 
         {
-            $sql = "SELECT * FROM tbl_rol where estado<>3;";
-            $result = array();
+            $sql = "SELECT * FROM tbl_rol where estado<>3;"; 
+            $result = array(); 
             $stm = $this->conectar()->prepare($sql);
             $stm->execute();
 
             foreach($stm->fetchAll(PDO::FETCH_OBJ) as $r)
             {
-                $tr = new tbl_rol();
-                $tr->setRolDescripcion($r->rol_descripcion);
-                $tr->setEstado($r->estado);
+                $rol = new tbl_rol();
 
-                $result[] = $tr;
+                $rol->setIdRol($r->id_rol);
+                $rol->setRolDescripcion($r->rol_descripcion);
+                $rol->setEstado($r->estado);
+
+                $result[] = $rol;
             }
+            
             return $result;
-        } catch (Exception $e)
+        } 
+        catch (Exception $e) 
         {
             die($e->getMessage());
         }
     }
-
-    public function guardarRol(tbl_rol $tr)
+    public function guardarUsuario(tbl_usuario $tu)
     {
         try 
         {
             
-            $sql = "INSERT INTO tbl_rol (rol_descripcion, estado) VALUES 
-                    (?,1)";
+            $sql = "INSERT INTO tbl_usuario (nombres, apellidos, email, usuario, pwd, estado) VALUES 
+                    (?,?,?,?,?,1)";
             $query = $this->conectar()->prepare($sql)->execute(array(
-                $tr->getRolDescripcion(), 
-            ));
+                $tu->getNombres(), 
+                $tu->getApellidos(), 
+                $tu->getEmail(), 
+                $tu->getUsuario(), 
+                $tu->getPwd()));
 
             var_dump($query);
             
@@ -48,42 +53,27 @@ class dt_tbl_rol extends Conexion
         }
         
     }
-    public function editarRol(tbl_rol $tr)
+    
+    public function mostrarUsuario($id_usuario)
     {
         try 
         {
-            $sql = "UPDATE tbl_rol SET rol_descripcion = ?, estado = 2 where id_rol = ?";
-            $query = $this->conectar()->prepare($sql);
-            $query->execute(array(
-                $tr->getRolDescripcion(), 
-
-            ));
-        } 
-        catch (Exception $e) 
-        {
-            die($e->getMessage());
-        }
-    }
-
-    public function mostrarRol($id_rol)
-    {
-        try 
-        {
-            $sql = "SELECT * FROM tbl_rol where estado<>3 and id_rol = ?;"; 
-            //$result = array(); 
+            $sql = "SELECT * FROM tbl_usuario where estado<>3 and id_usuario=?;"; 
             $stm = $this->conectar()->prepare($sql);
-            $stm->execute(array($id_rol));
+            $stm->execute(array($id_usuario));
 
             $r = $stm->fetch(PDO::FETCH_OBJ);
+            $tu = new tbl_usuario();
 
-            $tr = new tbl_rol();
+            $tu->setIdUsuario($r->id_usuario);
+            $tu->setNombres($r->nombres);
+            $tu->setApellidos($r->apellidos);
+            $tu->setEmail($r->email);
+            $tu->setUsuario($r->usuario);
+            $tu->setPwd($r->pwd);
+            $tu->setEstado($r->estado);
 
-            $tr->setIdRol($r->id_rol);
-            $tr->setRolDescripcion($r->rol_descripcion);
-            $tr->setEstado($r->estado);
-
-            //$result[] = $tu;   
-            return $tr;
+            return $tu;
         } 
         catch (Exception $e) 
         {
@@ -91,22 +81,5 @@ class dt_tbl_rol extends Conexion
         }
     }
 
-    public function eliminarRol($id_rol)
-    {
-        try 
-        {
-            $sql = "DELETE FROM tbl_rol WHERE id_rol = ?";
-            $query = $this->conectar()->prepare($sql);
-            
-            $query->execute(array(
-                $id_rol
-            ));
-            
-        } 
-        catch (Exception $e) 
-        {
-            die($e->getMessage());
-        }
-    }
 }
 ?>

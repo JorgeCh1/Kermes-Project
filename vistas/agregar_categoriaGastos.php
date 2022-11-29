@@ -1,19 +1,14 @@
 <?php
-require_once '../entidades/tbl_categoria_producto.php';
-require_once '../datos/dt_tbl_categoria.php';
-require_once '../controladores/categoriaController.php';
 
-$tu = new tbl_categoria_producto();
-$dtu = new dt_tbl_categoria();
-$cu = new categoriaController();
-
-
-if(isset($_GET['id_categoria']))
-{
-    $id_cat_producto = $_GET['id_categoria'];
-    $dtu->eliminarCategoria($id_cat_producto);
+require_once '../entidades/tbl_categoria_gastos.php';
+require_once '../datos/dt_tbl_categoriaGastos.php';
+require_once '../controladores/categoriaGastoController.php';
+if (isset($_POST['m'])) {
+    $metodo = $_POST['m'];
+    if (method_exists("categoriaGastoController", $metodo)) {
+        categoriaGastoController::{$metodo}();
+    }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -290,77 +285,77 @@ if(isset($_GET['id_categoria']))
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Categorias de Productos</h1>
+            <h1>Agregar Categoria de Gastos</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Productos</li>
-                    <li class="breadcrumb-item active">Categorias de Productos</li>
+                    <li class="breadcrumb-item">Categoría de Gastos</li>
+                    <li class="breadcrumb-item active">Agregar Categoria</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
-
         <section class="section">
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Agregar datos de la categoria</h5>
 
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Categorias Agregadas</h5>
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Nombre</th>
-                                        <th>Descripcion</th>
-                                        <th>Acción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                    foreach($dtu->listarCategoria() as $r):
-                  ?>
-                                    <tr>
-                                        <td><?php echo $r->getIdCategoriaProducto(); ?></td>
-                                        <td><?php echo $r->getNombre(); ?></td>
-                                        <td><?php echo $r->getDescripcion(); ?></td>
-                                        <td>
-                                            <a
-                                                href="editar_categoria.php?id_categoria=<?php echo $r->getIdCategoriaProducto(); ?>">
-                                                <button type="button" class="btn btn-outline-success"
-                                                    title="Editar Categoria">Editar</button>
-                                            </a>
-                                            <a
-                                                href="categoria.php?id_categoria=<?php echo $r->getIdCategoriaProducto(); ?>">
-                                                <button type="button" class="btn btn-outline-danger"
-                                                    title="Eliminar Categoria">Eliminar</button>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <?php endforeach;?>
-                                </tbody>
-                            </table>
+                    <!-- Floating Labels Form -->
+                    <form class="row g-3 needs-validation" novalidate method="POST">
+                        <div class="col-md-12">
+                            <input type="hidden" value="guardar" name="txtaccion" />
+
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria"
+                                    placeholder="Ingrese el nombre de la categoria" require>
+
+                                <label for="floatingName" id="nombre_categoria">Nombre categoria:</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="descripcion" name="descripcion"
+                                    placeholder="Ingrese una descripcion de la categoria" require>
+                                <label for=" floatingName" id="descripcion">Descripción</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-outline-primary">Agregar Categoria</button>
+                            <input type="hidden" name="m" value="guardarCategoriaGasto">
+                        </div>
+
                 </div>
+                </form><!-- End floating Labels Form -->
+            </div>
             </div>
         </section>
-
-
-    </main>
-    <!-- End #main -->
+    </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

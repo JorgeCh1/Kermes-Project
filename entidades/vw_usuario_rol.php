@@ -1,6 +1,6 @@
 <?php
 
-class vw_rol_usuario
+class vw_usuario_rol
 {
     private $id_rol_usuario;
     private $id_usuario;
@@ -68,14 +68,4 @@ class vw_rol_usuario
     public function setIdRol($id_rol){
         $this->id_rol = $id_rol;
     }
-
-    //Otro método
-    /*
-    public function __GET($k)
-    { 
-        return $this->$k; 
-    }
-	public function __SET($k, $v)
-    { 
-        return*/
 }

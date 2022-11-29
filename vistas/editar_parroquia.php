@@ -7,20 +7,17 @@ require_once '../controladores/parroquiaController.php';
 $dtu = new dt_tbl_parroquia();
 
 $varId_parroquia = 0;
-if(isset($varId_parroquia))
-{
+if (isset($varId_parroquia)) {
     $varId_parroquia = $_GET['idParroquia'];
 }
 
 $data_parroquia = $dtu->mostrarParroquia($varId_parroquia);
 
-if(isset($_POST['m'])){
+if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if(method_exists("parroquiaController",$metodo))
-    {
+    if (method_exists("parroquiaController", $metodo)) {
         parroquiaController::{$metodo}();
     }
-   
 }
 ?>
 <!DOCTYPE html>
@@ -298,8 +295,8 @@ if(isset($_POST['m'])){
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -380,7 +377,7 @@ if(isset($_POST['m'])){
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom5" id="floatingName"
-                                    name="sitio_web" value="<?php echo $data_parroquia->getSitioWeb(); ?>" required>
+                                    name="sitio_web" value="<?php echo $data_parroquia->getSitio_web(); ?>" required>
                                 <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
                                 <label for="floatingName" id="validationCustom5">Sitio Web de la Parroquia</label>
                                 <div class="valid-feedback">
@@ -395,7 +392,7 @@ if(isset($_POST['m'])){
                             <div class="form-floating">
                                 <div class="col-sm-10">
                                     <input id="validationCustom6" class="form-control" type="file" name="file"
-                                        value="<?php echo $data_parroquia->getSitioWeb(); ?>" required />
+                                        value="<?php echo $data_parroquia->getSitio_web(); ?>" required />
 
                                     <span class="input-group-text" id="basic-addon3">Logo de La Parroquia</span>
                                     <div class="valid-feedback">
@@ -422,7 +419,7 @@ if(isset($_POST['m'])){
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

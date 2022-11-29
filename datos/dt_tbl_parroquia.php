@@ -22,7 +22,7 @@ class dt_tbl_parroquia extends Conexion{
                 $tu->setTelefono($r->telefono);
                 $tu->setParroco($r->parroco);
                 $tu->setLogo($r->logo);
-                $tu->setSitioWeb($r->sitio_web);
+                $tu->setSitio_web($r->sitio_web);
 
                 $result[] = $tu;
             }
@@ -46,7 +46,7 @@ class dt_tbl_parroquia extends Conexion{
                 $tu->getTelefono(), 
                 $tu->getParroco(), 
                 $tu->getLogo(),
-                $tu->getSitioWeb(),
+                $tu->getSitio_web(),
             ));
             var_dump($query);
         } 
@@ -69,7 +69,7 @@ class dt_tbl_parroquia extends Conexion{
                 $tu->getTelefono(),
                 $tu->getParroco(),
                 $tu->getLogo(),
-                $tu->getSitioWeb(),
+                $tu->getSitio_web(),
                 $tu->getIdParroquia()
             ));
         } 
@@ -96,7 +96,7 @@ class dt_tbl_parroquia extends Conexion{
             $tu->setTelefono($r->telefono);
             $tu->setParroco($r->parroco);
             $tu->setLogo($r->logo);
-            $tu->setSitioWeb($r->sitio_web);
+            $tu->setSitio_web($r->sitio_web);
 
             return $tu;
         } 

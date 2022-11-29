@@ -1,7 +1,7 @@
 <?php
 
 require_once("conexion.php");
-require_once("../entidades/tbl_categoria_producto.php");
+require_once("../entidades/tbl_categoria_productos.php");
 class dt_tbl_categoria extends Conexion
 {
 
@@ -15,7 +15,7 @@ class dt_tbl_categoria extends Conexion
 
             foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
                 $tu = new tbl_categoria_producto();
-                $tu->setIdCategoriaProducto($r->id_categoria_producto);
+                $tu->setId_categoria_producto($r->id_categoria_producto);
                 $tu->setNombre($r->nombre);
                 $tu->setEstado($r->estado);
 
@@ -37,7 +37,7 @@ class dt_tbl_categoria extends Conexion
 
             foreach ($stm->fetchAll(PDO::FETCH_OBJ) as $r) {
                 $tu = new tbl_categoria_producto();
-                $tu->setIdCategoriaProducto($r->id_categoria_producto);
+                $tu->setId_categoria_producto($r->id_categoria_producto);
                 $tu->setNombre($r->nombre);
                 $tu->setDescripcion($r->descripcion);
                 $tu->setEstado($r->estado);
@@ -81,7 +81,7 @@ class dt_tbl_categoria extends Conexion
             $query->execute(array(
                 $tu->getNombre(),
                 $tu->getDescripcion(),
-                $tu->getIdCategoriaProducto()
+                $tu->getId_categoria_producto()
             ));
         } 
         catch (Exception $e) 
@@ -103,7 +103,7 @@ class dt_tbl_categoria extends Conexion
 
             $tu = new tbl_categoria_producto();
 
-            $tu->setIdCategoriaProducto($r->id_categoria_producto);
+            $tu->setId_categoria_producto($r->id_categoria_producto);
             $tu->setNombre($r->nombre);
             $tu->setDescripcion($r->descripcion);
             $tu->setEstado($r->estado);

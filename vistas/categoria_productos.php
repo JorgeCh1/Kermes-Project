@@ -1,13 +1,22 @@
 <?php
 
-require_once '../entidades/tbl_usuario.php';
-require_once '../datos/dt_tbl_usuario.php';
-require_once '../controladores/usuarioController.php';
+require_once '../entidades/tbl_categoria_productos.php';
+require_once '../datos/dt_tbl_categoriaProducto.php';
+require_once '../controladores/categoriaProductoController.php';
+
+$dtc = new dt_tbl_categoriaProducto();
 if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if (method_exists("usuarioController", $metodo)) {
-        usuarioController::{$metodo}();
+    if (method_exists("categoriaProductoController", $metodo)) {
+        categoriaProductoController::{$metodo}();
     }
+}
+
+
+if (isset($_GET['id_categoria_producto'])) {
+
+    $id_categoria_producto = $_GET['id_categoria_producto'];
+    $dtc->eliminarCategoria($id_categoria_producto);
 }
 ?>
 
@@ -292,100 +301,65 @@ if (isset($_POST['m'])) {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Agregar Usuario</h1>
+            <h1>Categorias de Productos</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Seguridad</a></li>
-                    <li class="breadcrumb-item active">Agregar Usuario</li>
+                    <li class="breadcrumb-item">Productos</li>
+                    <li class="breadcrumb-item active">Categorias de Productos</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
+
         <section class="section">
-            <!-- Formulario para agregar Usuario-->
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Agregar datos del Usuario</h5>
+            <div class="row">
+                <div class="col-lg-12">
 
-                    <!-- Floating Labels Form -->
-                    <form class="row g-3 needs-validation" novalidate method="POST">
-                        <div class="col-md-12">
-                            <input type="hidden" value="guardar" name="txtaccion" />
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom01" id="floatingName"
-                                    placeholder="Your Name" name="nombre" required>
-                                <label for="floatingName" id="validationCustom01">Nombre</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Categorias Agregadas</h5>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($dtc->listarCategoriaProdcuto() as $r) :
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $r->getId_categoria_producto(); ?></td>
+                                        <td><?php echo $r->getNombre(); ?></td>
+                                        <td><?php echo $r->getDescripcion(); ?></td>
+                                        <td>
+                                            <a
+                                                href="editar_categoria_productos.php?id_categoria_producto=<?php echo $r->getId_categoria_producto(); ?>">
+                                                <button type="button" class="btn btn-outline-success"
+                                                    title="Editar Categoria">Editar</button>
+                                            </a>
+                                            <a
+                                                href="categoria_productos.php?id_categoria_producto=<?php echo $r->getId_categoria_producto(); ?>">
+                                                <button type="button" class="btn btn-outline-danger"
+                                                    title="Eliminar Categoria">Eliminar</button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom02" id="floatingName"
-                                    placeholder="Your Name" name="apellido" required>
-                                <label for="floatingName" id="validationCustom02">Apellidos</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="email" class="form-control" id="validationCustom03" id="floatingName"
-                                    placeholder="Your Name" name="email" required>
-                                <label for="floatingName" id="validationCustom03">Correo Electrónico</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo y/o ingresa un correo electrónico válido
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom04" id="floatingEmail"
-                                    placeholder="Your Email" name="usuario" required>
-                                <label for="floatingEmail" id="validationCustom04">Usuario</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input id="txtPassword" type="password" class="form-control" id="validationCustom05"
-                                    id="floatingPassword" placeholder="Password" name="pwd" required>
-                                <label for="floatingPassword" id="validationCustom05">Contraseña</label>
-                                <span class="fa fa-eye-slash icon" class="input-group-text"></span> </button>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-primary">Agregar Usuario</button>
-                            <input type="hidden" name="m" value="guardarUsuario">
-
-                        </div>
-                    </form><!-- End floating Labels Form -->
+                    </div>
+                </div>
+            </div>
         </section>
 
 
-    </main><!-- End #main -->
+    </main>
+    <!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <?php

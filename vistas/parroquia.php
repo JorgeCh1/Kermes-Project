@@ -8,8 +8,7 @@ $dtu = new dt_tbl_parroquia();
 $cu = new parroquiaController();
 
 
-if(isset($_GET['idParroquia']))
-{
+if (isset($_GET['idParroquia'])) {
     $idParroquia = $_GET['idParroquia'];
     $dtu->eliminarParroquia($idParroquia);
 }
@@ -288,8 +287,8 @@ if(isset($_GET['idParroquia']))
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
     <main id="main" class="main">
 
@@ -325,30 +324,30 @@ if(isset($_GET['idParroquia']))
                                 </thead>
                                 <tbody>
                                     <?php
-                    foreach($dtu->listarParroquia() as $r):
-                  ?>
+                                    foreach ($dtu->listarParroquia() as $r) :
+                                    ?>
                                     <tr>
                                         <td><?php echo $r->getIdParroquia(); ?></td>
                                         <td><?php echo $r->getNombre(); ?></td>
                                         <td><?php echo $r->getDireccion(); ?></td>
                                         <td><?php echo $r->getTelefono(); ?></td>
                                         <td><?php echo $r->getParroco(); ?></td>
-                                        <td><img src="assets/img/<?php echo $r->getLogo(); ?>" width="50px"
-                                                height="50px"></td>
-                                        <td><?php echo $r->getSitioWeb(); ?></td>
+                                        <td><img src="assets/img/<?php echo $r->getLogo(); ?>" width="100px"
+                                                height="100px"></td>
+                                        <td><?php echo $r->getSitio_web(); ?></td>
                                         <td>
                                             <a
                                                 href="editar_parroquia.php?idParroquia=<?php echo $r->getIdParroquia(); ?>">
                                                 <button type="button" class="btn btn-outline-success"
                                                     title="Editar Parroquia">Editar</button>
                                             </a>
-                                            <a href="parroquia.php?idParroquia=<?php echo $r->getIdParroquia();?>">
+                                            <a href="parroquia.php?idParroquia=<?php echo $r->getIdParroquia(); ?>">
                                                 <button type="button" class="btn btn-outline-danger"
                                                     title="Eliminar Parroquia">Eliminar</button>
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php endforeach;?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -364,7 +363,7 @@ if(isset($_GET['idParroquia']))
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

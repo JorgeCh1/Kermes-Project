@@ -3,10 +3,9 @@
 require_once '../entidades/tbl_comunidad.php';
 require_once '../datos/dt_tbl_comunidad.php';
 require_once '../controladores/comunidadController.php';
-if(isset($_POST['m'])){
+if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if(method_exists("comunidadController",$metodo))
-    {
+    if (method_exists("comunidadController", $metodo)) {
         comunidadController::{$metodo}();
     }
 }
@@ -286,8 +285,8 @@ if(isset($_POST['m'])){
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -315,7 +314,7 @@ if(isset($_POST['m'])){
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom01" id="floatingName"
                                     placeholder="Your Name" name="nombre" required>
-                                <label for="floatingName" id="validationCustom01">Nombre</label>
+                                <label for="floatingName" id="validationCustom01">Nombre:</label>
                                 <div class="valid-feedback">
 
                                 </div>
@@ -328,7 +327,7 @@ if(isset($_POST['m'])){
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom02" id="floatingName"
                                     placeholder="Your Name" name="responsable" required>
-                                <label for="floatingName" id="validationCustom02">Responsable</label>
+                                <label for="floatingName" id="validationCustom02">Responsable:</label>
                                 <div class="valid-feedback">
 
                                 </div>
@@ -339,9 +338,23 @@ if(isset($_POST['m'])){
                         </div>
                         <div class="col-md-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom03" id="floatingName"
-                                    placeholder="Your Name" name="desccontribucion" required>
-                                <label for="floatingName" id="validationCustom03">Descuento</label>
+                                <input type="number" class="form-control" id="validationCustom03" id="floatingName"
+                                    placeholder="Your Name" name="desc_contribucion" required>
+                                <label for="floatingName" id="validationCustom03">Descuento:</label>
+                                <div class="valid-feedback">
+
+                                </div>
+                                <div class="invalid-feedback">
+                                    Rellena este campo
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-floating">
+                                <input type="number" class="form-control" id="validationCustom03" id="floatingName"
+                                    placeholder="Your Name" name="estado" required>
+                                <label for="floatingName" id="validationCustom03">Estado:</label>
                                 <div class="valid-feedback">
 
                                 </div>
@@ -353,7 +366,7 @@ if(isset($_POST['m'])){
                         <div class="text-center">
                             <button type="submit" class="btn btn-outline-primary">Agregar Comunidad</button>
                             <input type="hidden" name="m" value="guardarComunidad">
-                            <button type="button" class="btn btn-outline-secondary">Cancelar</button>
+
                         </div>
                     </form><!-- End floating Labels Form -->
 
@@ -364,7 +377,7 @@ if(isset($_POST['m'])){
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

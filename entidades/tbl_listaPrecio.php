@@ -1,11 +1,14 @@
 <?php
-        
-class moneda {
-    private $id_moneda;
+
+class listaPrecio {
+    private $id_lista_precio; 
+    private $id_kermesse;
     private $nombre;
-    private $simbolo;
-    private $estado;
-    
+    private $descripcion; 
+    private $estado; 
+
     public function __GET($k){return $this->$k;}
     public function __SET($k, $v){return $this->$k = $v;}
+    
+
 }

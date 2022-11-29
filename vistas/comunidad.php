@@ -1,16 +1,17 @@
 <?php
+
 require_once '../entidades/tbl_comunidad.php';
 require_once '../datos/dt_tbl_comunidad.php';
 require_once '../controladores/comunidadController.php';
 
-$tu = new tbl_comunidad();
-$dtu = new dt_tbl_comunidad();
-$cu = new comunidadController();
 
-if(isset($_GET['id_comunidad']))
-{
+$tp = new tbl_comunidad();
+$dtc = new dt_tbl_comunidad();
+
+if (isset($_GET['id_comunidad'])) {
+
     $id_comunidad = $_GET['id_comunidad'];
-    $dtu->eliminarComunidad($id_comunidad);
+    $dtc->eliminarComunidad($id_comunidad);
 }
 ?>
 
@@ -288,8 +289,8 @@ if(isset($_GET['id_comunidad']))
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -322,26 +323,26 @@ if(isset($_GET['id_comunidad']))
                                 </thead>
                                 <tbody>
                                     <?php
-                    foreach($dtu->listarComunidad() as $r):
-                  ?>
+                                    foreach ($dtc->listarComunidad() as $p) :
+                                    ?>
                                     <tr>
-                                        <td><?php echo $r->getIdComunidad(); ?></td>
-                                        <td><?php echo $r->getNombre(); ?></td>
-                                        <td><?php echo $r->getResponsable(); ?></td>
-                                        <td><?php echo $r->getDescContribucion(); ?></td>
+                                        <td><?php echo $p->getIdcomunidad(); ?></td>
+                                        <td><?php echo $p->getNombre(); ?></td>
+                                        <td><?php echo $p->getResponsable(); ?></td>
+                                        <td><?php echo $p->getDesc_contribucion(); ?></td>
                                         <td>
                                             <a
-                                                href="editar_comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
+                                                href="editar_comunidad.php?id_comunidad=<?php echo $p->getIdComunidad(); ?>">
                                                 <button type="button" class="btn btn-outline-success"
                                                     title="Editar Comunidad">Editar</button>
                                             </a>
-                                            <a href="comunidad.php?id_comunidad=<?php echo $r->getIdComunidad(); ?>">
+                                            <a href="comunidad.php?id_comunidad=<?php echo $p->getIdComunidad(); ?>">
                                                 <button type="button" class="btn btn-outline-danger"
                                                     title="Eliminar Comunidad">Eliminar</button>
                                             </a>
                                         </td>
                                     </tr>
-                                    <?php endforeach;?>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -355,7 +356,7 @@ if(isset($_GET['id_comunidad']))
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
