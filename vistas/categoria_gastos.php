@@ -301,11 +301,11 @@ if (isset($_GET['id_categoria_gastos'])) {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Categorias de Productos</h1>
+            <h1>Categorias de Gastos</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item">Productos</li>
-                    <li class="breadcrumb-item active">Categorias de Productos</li>
+                    <li class="breadcrumb-item">Control de Gastos</li>
+                    <li class="breadcrumb-item active">Categorias de Gastos</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -318,7 +318,7 @@ if (isset($_GET['id_categoria_gastos'])) {
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Categoria Gasto</h5>
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table class="table usuariosTable">
                                 <thead>
                                     <tr>
                                         <th>ID Categoria gastos</th>

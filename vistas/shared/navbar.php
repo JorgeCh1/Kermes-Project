@@ -25,7 +25,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="crear_roles.php">
+                    <a href="agregar_rol.php">
                         <i class="bi bi-circle"></i><span>Crear Roles</span>
                     </a>
                 </li>

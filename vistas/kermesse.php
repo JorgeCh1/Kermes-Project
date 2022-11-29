@@ -1,11 +1,19 @@
 <?php
 
+require_once("../entidades/tbl_kermesse.php");
+require_once("../datos/dt_kermesse.php");
 include '../entidades/vw_kermesse.php';
-include '../datos/dt_kermesse.php';
-include '../entidades/tbl_kermesse.php';
+require_once("../controladores/kermessecontroller.php");
 
+$tk = new tbl_kermesse();
 $dtk = new dt_kermesse();
+$ck = new kermesseController();
 $tbv = new tbl_Vw_Kermesse();
+
+if (isset($_GET['id_kermesse'])) {
+    $dtk->eliminarKermesse($_GET['id_kermesse']);
+}
+
 
 ?>
 
@@ -27,9 +35,7 @@ $tbv = new tbl_Vw_Kermesse();
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -291,10 +297,10 @@ $tbv = new tbl_Vw_Kermesse();
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Productos</h1>
+            <h1>Kermesse</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active">Productos</li>
+                    <li class="breadcrumb-item active">Kermesse</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
@@ -306,7 +312,7 @@ $tbv = new tbl_Vw_Kermesse();
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Tabla Kermesse</h5>
-                            <table id="example1" class="table table-bordered table-striped">
+                            <table class="table ProductosTable">
                                 <thead>
                                     <tr>
                                         <th>ID kermesse</th>
@@ -324,35 +330,23 @@ $tbv = new tbl_Vw_Kermesse();
                                     foreach ($dtk->listarKermesse() as $r) :
                                         //  echo $dtu->listarUsuaios(); 
                                     ?>
-                                    <tr>
-                                        <td><?php echo $r->getCodigo_kermesse(); ?></td>
-                                        <td><?php echo $r->getNombre_Parroquia(); ?></td>
-                                        <td><?php echo $r->getNombre(); ?></td>
-                                        <td><?php echo $r->getFechaInicio(); ?></td>
-                                        <td><?php echo $r->getFechaFinaliacion(); ?></td>
-                                        <td><?php echo $r->getDescripcion() ?></td>
-                                        <td><?php
-                                                if ($r->getEstado() == '1') {
-                                                    echo 'Activo';
-                                                } elseif ($r->getEstado() == '2') {
-                                                    echo 'Editado';
-                                                } elseif ($r->getEstado() == '3') {
-                                                    echo 'Dado de baja';
-                                                }
-                                                ?></td>
-                                        <td>
-                                            <a href="editar_kermesse.php?editK=<?php echo $r->getCodigo_kermesse(); ?>">
-                                                <i class="far fa-2x fa-edit"
-                                                    title="Editar <?php echo $r->getNombre(); ?>"></i>
-                                            </a>
-                                            &nbsp;&nbsp;
-
-                                            <a href="kermesse.php?delK=<?php echo $r->getCodigo_kermesse(); ?>">
-                                                <i class="far fa-2x fa-trash-alt"
-                                                    title="Eliminar <?php echo $r->getNombre(); ?>"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td><?php echo $r->getId_Kermesse(); ?></td>
+                                            <td><?php echo $r->getId_Parroquia(); ?></td>
+                                            <td><?php echo $r->getNombre(); ?></td>
+                                            <td><?php echo $r->getFecha_Inicio(); ?></td>
+                                            <td><?php echo $r->getFecha_Final() ?></td>
+                                            <td><?php echo $r->getDescripcion() ?></td>
+                                            <td>
+                                                <a href="Editar-Kermesse.php?id_kermesse=<?php echo $r->getId_Kermesse(); ?>">
+                                                    <i class="bi bi-pencil-square" title="Editar Kermesse"></i>
+                                                </a>
+                                                &nbsp;&nbsp;
+                                                <a href="Kermesse.php?id_kermesse=<?php echo $r->getId_Kermesse(); ?>">
+                                                    <i class="bi bi-trash3" title="Eliminar Kermesse"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     <?php
                                     endforeach;
                                     ?>
@@ -372,8 +366,7 @@ $tbv = new tbl_Vw_Kermesse();
     ?>
     <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

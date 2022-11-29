@@ -1,9 +1,11 @@
 <?php
 include_once("conexion.php");
 
-
 class dt_kermesse extends Conexion
 {
+
+
+
 
     public function listarKermesse()
     {
@@ -36,9 +38,11 @@ class dt_kermesse extends Conexion
             }
 
             return $result;
+
         } catch (Exception $e) {
             die($e->getMessage());
         }
+
     }
 
 
@@ -63,9 +67,11 @@ class dt_kermesse extends Conexion
 
 
             return $result;
+
         } catch (Exception $e) {
             die($e->getMessage());
         }
+
     }
 
     public function listarUsuario()
@@ -88,9 +94,11 @@ class dt_kermesse extends Conexion
 
 
             return $result;
+
         } catch (Exception $e) {
             die($e->getMessage());
         }
+
     }
 
 
@@ -106,16 +114,18 @@ class dt_kermesse extends Conexion
 
 
             $stm->execute(
-                array(
-                    $k->getIdParroquia(),
-                    $k->getNombre(),
-                    $k->getFinicio(),
-                    $k->getFfinal(),
-                    $k->getDescripcion(),
-                    $k->getEstado()
+                    array(
+                        $k->getIdParroquia(),
+                        $k->getNombre(),
+                        $k->getFinicio(),
+                        $k->getFfinal(),
+                        $k->getDescripcion(),
+                        $k->getEstado()
 
-                )
-            );
+                    )
+                );
+
+
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -151,6 +161,8 @@ class dt_kermesse extends Conexion
                         $k->getId_kermesse()
                     )
                 );
+
+
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -191,6 +203,7 @@ class dt_kermesse extends Conexion
             $querySQL = "UPDATE dbkermesse.tbl_kermesse SET estado = 3 WHERE tbl_kermesse.id_kermesse = ?";
             $stm = $this->conectar()->prepare($querySQL);
             $stm->execute(array($id));
+
         } catch (Exception $e) {
             die($e->getMessage());
         }
@@ -219,8 +232,21 @@ class dt_kermesse extends Conexion
 
 
             return $result;
+
         } catch (Exception $e) {
             die($e->getMessage());
         }
+
     }
+
 }
+
+
+
+
+
+
+
+
+
+?>

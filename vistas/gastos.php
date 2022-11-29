@@ -1,22 +1,16 @@
 <?php
+require_once '../entidades/tbl_gastos.php';
+require_once '../datos/dt_tbl_gastos.php';
+require_once '../controladores/gastosController.php';
 
-include '../datos/dt_kermesse.php';
-include '../entidades/tbl_vw_KermesseParroquia.php';
-include '../entidades/vw_kermesseUsuario.php';
-include '../controladores/kermesseController.php';
+$tp = new tbl_gastos();
+$dtp = new dt_tbl_gastos();
 
-$dtk = new dt_kermesse();
-
-
-if (isset($_POST['m'])) {
-    $metodo = $_POST['m'];
-
-    if (method_exists("kermesseController", $metodo)) {
-        kermesseController::{$metodo}();
-    }
+if (isset($_GET['id_registro_gastos'])) {
+    $id_registro_gastos = $_GET['id_registro_gastos'];
+    $dtp->eliminarGasto($id_registro_gastos);
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +18,7 @@ if (isset($_POST['m'])) {
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
     <title>Kermes Project</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
@@ -34,7 +29,9 @@ if (isset($_POST['m'])) {
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -160,6 +157,72 @@ if (isset($_POST['m'])) {
 
                 </li><!-- End Notification Nav -->
 
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </a><!-- End Messages Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            You have 3 new messages
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Maria Hudson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>4 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>Anna Nelson</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>6 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>David Muldon</h4>
+                                    <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
+                                    <p>8 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                            <a href="#">Show all messages</a>
+                        </li>
+
+                    </ul><!-- End Messages Dropdown Items -->
+
+                </li><!-- End Messages Nav -->
+
                 <li class="nav-item dropdown pe-3">
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -230,123 +293,93 @@ if (isset($_POST['m'])) {
     <main id="main" class="main">
 
         <div class="pagetitle">
-            <h1>Agregar Kermesse</h1>
+            <h1>Productos</h1>
             <nav>
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Kermesse</a></li>
-                    <li class="breadcrumb-item active">Agregar Kermesse</li>
+                    <li class="breadcrumb-item active">Productos</li>
                 </ol>
             </nav>
         </div><!-- End Page Title -->
 
         <section class="section">
+            <div class="row">
+                <div class="col-lg-12">
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Agregar datos de la Parroquia</h5>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Tabla Gastos</h5>
+                            <table class="table ProductosTable">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>kermesse</th>
+                                        <th>Categoria</th>
+                                        <th>Fecha</th>
+                                        <th>Concepto</th>
+                                        <th>Monto</th>
+                                        <th>Estado</th>
+                                        <th>Accion</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($dtp->listarGastos() as $r) :
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $r->getId_registros_gastos(); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $r->getIdKermesse(); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $r->getIdCatGastos(); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $r->getFechaGastos(); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $r->getConcepto(); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $r->getMonto(); ?>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                if ($r->getEstado() == '1') {
+                                                    echo 'Activo';
+                                                } elseif ($r->getEstado() == '2') {
+                                                    echo 'Editado';
+                                                } elseif ($r->getEstado() == '3') {
+                                                    echo 'Dado de baja';
+                                                }
+                                                ?>
+                                        </td>
 
-                    <form class="row g-3 needs-validation" novalidate method="POST">
+                                        <td>
+                                            <a
+                                                href="editar_gasto.php?id_registros_gastos=<?php echo $r->getId_registros_gastos(); ?>">
+                                                <i class="bi bi-pencil-square" title="Editar Gasto"></i>
+                                            </a>
+                                            <a
+                                                href="gastos.php?id_registros_gastos=<?php echo $r->getId_registros_gastos(); ?>">
+                                                <i class="bi bi-trash3" title="Eliminar Gasto"></i>
+                                            </a>
 
-                        <div class="col-md-12">
-                            <label>Seleccione una parroquia</label>
-                            <select class="form-control" id="idParroquia" name="idParroquia" require>
-                                <option value="">Seleccione...</option>
-                                <?php
-                                foreach ($dtk->listarParroquia() as $c) :
-                                ?>
-                                    <option value="<?php echo $c->getIdParroquia(); ?>">
-                                        <?php echo $c->getNombre(); ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
                         </div>
+                    </div>
 
-
-
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom02" id="floatingName" placeholder="Your Name" name="nombre" id="nombre" required>
-                                <label for="floatingName" id="validationCustom02">Nombre de kermesse:</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" id="validationCustom03" id="floatingName" placeholder="Your Name" name="fInicio" id="fInicio" required>
-                                <label for="floatingName" id="validationCustom03">Fecha de inicio::</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="date" class="form-control" id="validationCustom03" id="floatingName" placeholder="Your Name" name="fFinal" id="fFinal" required>
-                                <label for="floatingName" id="validationCustom03">Fecha de finalización:</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="text" class="form-control" id="validationCustom03" id="floatingName" placeholder="Your Name" name="descripcion" id="descripcion" required>
-                                <label for="floatingName" id="validationCustom03">Descripción:</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-12">
-                            <div class="form-floating">
-                                <input type="number" class="form-control" id="validationCustom03" id="floatingName" placeholder="Your Name" name="estado" id="estado" required>
-                                <label for="floatingName" id="validationCustom03">Estado:</label>
-                                <div class="valid-feedback">
-
-                                </div>
-                                <div class="invalid-feedback">
-                                    Rellena este campo
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-primary">Agregar Kermesse</button>
-                            <input type="hidden" name="m" value="guardarKermesse">
-
-                        </div>
-
-
-                    </form><!-- End floating Labels Form -->
                 </div>
+
             </div>
         </section>
 
-    </main>
-    <!-- End #main -->
+    </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <?php
@@ -354,7 +387,8 @@ if (isset($_POST['m'])) {
     ?>
     <!-- End Footer -->
 
-    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/apexcharts/apexcharts.min.js"></script>

@@ -3,11 +3,9 @@
 require_once '../entidades/tbl_rol.php';
 require_once '../datos/dt_tbl_rol.php';
 require_once '../controladores/rolController.php';
-
-if(isset($_POST['m'])){
+if (isset($_POST['m'])) {
     $metodo = $_POST['m'];
-    if(method_exists("rolController",$metodo))
-    {
+    if (method_exists("rolController", $metodo)) {
         rolController::{$metodo}();
     }
 }
@@ -287,8 +285,8 @@ if(isset($_POST['m'])){
 
     <!-- ======= Sidebar ======= -->
     <?php
-  include("shared/navbar.php");
-  ?>
+    include("shared/navbar.php");
+    ?>
     <!-- End Sidebar-->
 
     <main id="main" class="main">
@@ -307,7 +305,7 @@ if(isset($_POST['m'])){
             <!-- Formulario para agregar Usuario-->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Agregar datos de los Roles</h5>
+                    <h5 class="card-title">Agregar datos del Rol</h5>
 
                     <!-- Floating Labels Form -->
                     <form class="row g-3 needs-validation" novalidate method="POST">
@@ -315,8 +313,8 @@ if(isset($_POST['m'])){
                             <input type="hidden" value="guardar" name="txtaccion" />
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="validationCustom01" id="floatingName"
-                                    placeholder="Your Name" name="nombre" required>
-                                <label for="floatingName" id="validationCustom01">Descripción del Rol</label>
+                                    placeholder="Your Name" name="rol_descripcion" required>
+                                <label for="floatingName" id="validationCustom01">Rol</label>
                                 <div class="valid-feedback">
 
                                 </div>
@@ -331,7 +329,6 @@ if(isset($_POST['m'])){
                             <button type="button" class="btn btn-outline-secondary">Cancelar</button>
                         </div>
                     </form><!-- End floating Labels Form -->
-
         </section>
 
     </main><!-- End #main -->
@@ -339,7 +336,7 @@ if(isset($_POST['m'])){
     <!-- ======= Footer ======= -->
     <?php
     include("shared/footer.php");
-  ?>
+    ?>
     <!-- End Footer -->
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
