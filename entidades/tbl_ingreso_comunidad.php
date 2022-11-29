@@ -3,8 +3,8 @@
 class tbl_ingreso_comunidad{
     private $id_ingreso_comunidad;
     private $id_kermesse;
-    private $idComunidad;
-    private $idProducto;
+    private $id_comunidad;
+    private $id_productos;
     private $cantProductos;
     private $totalBonos;
     private $estado;
@@ -28,7 +28,7 @@ class tbl_ingreso_comunidad{
     }
 
     public function setIdKermesse($id_kermesse){
-        $this->id_Kermesse = $id_kermesse;
+        $this->id_kermesse = $id_kermesse;
     }
 
     public function getIdComunidad(){
@@ -48,7 +48,7 @@ class tbl_ingreso_comunidad{
     }
 
     public function getTotalBonos(){
-        return $this->tptal_bonos;
+        return $this->totalBonos;
     }
 
     public function setTotalBonos($totalBonos){

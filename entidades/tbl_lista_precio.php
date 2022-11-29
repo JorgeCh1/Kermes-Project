@@ -16,7 +16,7 @@ class tbl_lista_precio{
      }
 
      public function getIdKermesse(){
-        return $this->id_Kermesse;
+        return $this->id_kermesse;
      }
 
      public function setIdKermesse($id_kermesse){

@@ -20,7 +20,7 @@ class tbl_kermesse{
     }
 
     public function setIdKermesse($id_kermesse){
-        $this->id_Kermesse = $id_kermesse;
+        $this->id_kermesse = $id_kermesse;
     }
 
     public function getIdParroquia(){
@@ -28,7 +28,7 @@ class tbl_kermesse{
     }
 
     public function setIdParroquia($idParroquia){
-        $this->IdParroquia = $idParroquia;
+        $this->idParroquia = $idParroquia;
     }
 
     public function getNombre(){
